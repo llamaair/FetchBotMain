@@ -852,55 +852,6 @@ async def premium(ctx):
 @client.command(description="Ping!")
 async def pong(ctx):
   await ctx.respond('Pong! {0}'.format(round(client.latency, 1)))
-  
-#FETCHBOT ACCOUNT COMMANDS BELOW
-
-@client.command(description="Create a FetchBot relationship account")
-@commands.has_role('Admin')
-async def createaccount(ctx, member):
-  x = member
-  db_keys = db.keys()
-  if x in db_keys:
-    await ctx.respond(f"{member} is a already existing account which you just tried to overwrite! Don't try this again!",ephemeral=True)
-  else:
-    db[member] = "None"
-    await ctx.respond("Account created",ephemeral=True)
-
-@client.command(description="Clear a account")
-@commands.has_role('Admin')
-async def clearaccount(ctx, member):
-  del db[member]
-  await ctx.respond(f"Account cleared for {member}",ephemeral=True)
-
-@client.command(description="Pet FetchBot")
-async def pet(ctx,membertobenefit):
-  value = db[f"{membertobenefit}"]
-  if value=="None":
-    db[f"{membertobenefit}"] = "1"
-    await ctx.respond("Relation increased!",ephemeral=True)
-  elif value=="1":
-    db[f"{membertobenefit}"] = "2"
-    await ctx.respond("Relation increased!",ephemeral=True)
-  elif value=="2":
-    db[f"{membertobenefit}"] = "3"
-    await ctx.respond("Relation increased!",ephemeral=True)
-  else:
-    await ctx.respond("Your relation with FetchBot is already good, he doesn't want any more pats.",ephemeral=True)
-  
-
-@client.command(description="See your relationship with FetchBot")
-async def relation(ctx,member):
-  value = db[member]
-  if value=="None":
-    await ctx.respond("This person haven't built up a relation with FetchBot yet!")
-  elif value=="1":
-    await ctx.respond("He isn't my worst enemy, but still")
-  elif value=="2":
-    await ctx.respond("We are best friends!")
-  else:
-    await ctx.respond("He has a **really** good relation with FetchBot!")
-
-#PREMIUM COMMANDS BELOW ONLY
 
 @client.command(description="See if you have premium!")
 @check(check_if_user_has_premium)
