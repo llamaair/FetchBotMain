@@ -14,8 +14,8 @@ from dotenv import load_dotenv
 #---------------------------#
 #NAME: FetchBot
 #Status: Working
-#Version: 2.0.1
-#Creator: Marc13 and Raxeemo
+#Version: 2.0.2
+#Creator: Marc13
 #---------------------------#
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
