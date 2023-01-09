@@ -837,33 +837,12 @@ async def support(ctx):
 async def subtract(ctx, firstnumber:int, secondnumber:int):
   await ctx.respond(f"{firstnumber}-{secondnumber} = {firstnumber-secondnumber}")
 
-@client.command(description="Start a FetchRoyale game!")
+@client.command(description="Pull the latest version from github and restart the bot")
 @commands.has_role('FetchAdmin')
-async def reboot(ctx):
-  await ctx.respond("Rebooting",ephemeral=True)
+async def gitpull(ctx):
+  await ctx.respond("Pulling from git and restarting",ephemeral=True)
   quit()
 
-@client.command(description="Call a function")
-async def call(ctx,function,error_on_call=None):
-  role = discord.utils.get(ctx.guild.roles, name="Admin")
-  user = ctx.author
-  if role in user.roles:
-    if function=="EmergencyReboot":
-      if error_on_call==None:
-        await ctx.respond(f"Successfully called {function}")
-        await reboot(ctx)
-      else:
-        await ctx.respond(f"{function} was called with the error {error_on_call}")
-    elif function=="Uptime":
-      if error_on_call==None:
-        await ctx.respond(f"Successfully called {function}")
-        await uptime(ctx)
-    elif function=="None":
-      await ctx.respond("Please enter a valid function to call")
-    else:
-      await ctx.respond("Please enter a valid function to call")
-  else:
-    await ctx.respond(f"Attention! {ctx.author.mention} just tried to call the {function} but he does not have the required roles!")
 
 @client.command(description="Get information about FetchBot Premium")
 async def premium(ctx):
