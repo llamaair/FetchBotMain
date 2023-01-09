@@ -9,7 +9,7 @@ from discord.ext import tasks
 import os
 import json
 from discord.ext.commands import check
-from token import token1
+from dotenv import load_dotenv
 
 #---------------------------#
 #NAME: FetchBot
@@ -18,7 +18,7 @@ from token import token1
 #Creator: Marc13 and Raxeemo
 #---------------------------#
 
-TOKEN = TOKEN1
+TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.all()
 
 client = discord.Bot(intents=intents, help_command=None)
