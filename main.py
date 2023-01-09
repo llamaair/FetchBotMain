@@ -841,6 +841,7 @@ async def subtract(ctx, firstnumber:int, secondnumber:int):
 @commands.has_role('FetchAdmin')
 async def gitpull(ctx):
   await ctx.respond("Pulling from git and restarting",ephemeral=True)
+  await ctx.send("**Performing a planned github pull and restarting**")
   quit()
 
 
