@@ -9,6 +9,7 @@ from discord.ext import tasks
 import os
 import json
 from discord.ext.commands import check
+from token import token1
 
 #---------------------------#
 #NAME: FetchBot
@@ -17,7 +18,7 @@ from discord.ext.commands import check
 #Creator: Marc13 and Raxeemo
 #---------------------------#
 
-TOKEN = "OTM1ODYwMjMxMDUxODI5MjU4.YfExwg.or1fz_n7L8auI16CMijRCYaUDfg"
+TOKEN = TOKEN1
 intents = discord.Intents.all()
 
 client = discord.Bot(intents=intents, help_command=None)
