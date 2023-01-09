@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 #Version: 2.0.1
 #Creator: Marc13 and Raxeemo
 #---------------------------#
-
+load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.all()
 
