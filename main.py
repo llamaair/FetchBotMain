@@ -620,12 +620,6 @@ async def smart(ctx):
   smart = random.choice(smartlist)
   await ctx.respond(f"You are {smart} smart!")
 
-@client.command(description="Delete the channel you use the command in")
-@commands.has_permissions(manage_channels=True)
-async def delchannel(ctx):
-  await ctx.respond("Channel is now being deleted",ephemeral=True)
-  await asyncio.sleep(2)
-  await ctx.channel.delete()
 
 @client.command(description="See how long the bot has been up for")
 async def uptime(ctx):

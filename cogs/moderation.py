@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import asyncio
 
 class moderation(commands.Cog): # create a class for our cog that inherits from commands.Cog
     # this class is used to create a cog, which is a module that can be added to the bot
@@ -47,6 +48,13 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
     async def warn(self, ctx, member: discord.Member, *, reason):
         await ctx.respond("Warning sent",ephemeral=True)
         await ctx.send(f"{member}, you have been warned by {ctx.author.mention} for {reason}")
+
+    @discord.slash_command(description="Delete the channel you use the command in")
+    @commands.has_permissions(manage_channels=True)
+    async def delchannel(self, ctx):
+      await ctx.respond("Channel is now being deleted",ephemeral=True)
+      await asyncio.sleep(2)
+      await ctx.channel.delete()
         
 
 def setup(bot): # this is called by Pycord to setup the cog
