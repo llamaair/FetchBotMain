@@ -759,6 +759,7 @@ async def comic(ctx):
 @client.command(description="Post a meme!")
 @check(check_if_user_has_premium)
 async def meme(ctx):
+  global lastMeme
   memelist=["https://img.delicious.com.au/WqbvXLhs/del/2016/06/more-the-merrier-31380-2.jpg", "https://pd-beamliving-cd.beamliving.com/-/media/bu-to-ch/cat-meme-netflix-funny-1000x666.png", "https://new.boredteachers.com/wp-content/uploads/2021/04/memes.jpg", "https://i.chzbgr.com/thumb800/18939909/h4090C4E2/memes-animal-memes-funny-animal-memes-memes-funny-memes-funny-cute-cute-animals-cute-animal-memes", "https://i.chzbgr.com/thumb800/18935045/h61FAABB3/and-claimed-my-dad-as-his-person-yes-that-is-a-picture-of-his-cat-on-his-comforter-umicroducklett"]
   meme = random.choice(memelist)
   await ctx.respond(meme)
