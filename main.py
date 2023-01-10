@@ -458,9 +458,6 @@ async def servers(ctx):
     embed = discord.Embed()
     for guild in client.guilds:
         embed.add_field(name=":crown:", value=guild)
-        randchan = random.choice(guild.text_channels)
-        link = await randchan.create_invite(max_age = 300)
-        embed.add_field(name=":crown:", value=link)
     await ctx.respond(embed = embed)
 
 
