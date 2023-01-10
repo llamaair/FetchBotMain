@@ -13,7 +13,7 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
 
     @discord.slash_command(description="Ban people")
     @commands.has_permissions(ban_members=True)
-    async def ban(ctx, user: discord.User, reason="No reason Provided"):
+    async def ban(self, ctx, user: discord.User, reason="No reason Provided"):
         try:
             await ctx.guild.ban(user, reason=reason)
             await ctx.respond(f"Successfully banned {user.mention} for {reason}!")
