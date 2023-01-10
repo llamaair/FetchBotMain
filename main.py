@@ -254,20 +254,6 @@ def convert(time):
     return val * time_dict[unit]
 
 
-@client.command(description="Ban people")
-@commands.has_permissions(ban_members=True)
-async def ban(ctx, user: discord.User, reason="No reason Provided"):
-    try:
-        await ctx.guild.ban(user, reason=reason)
-        await ctx.respond(f"Successfully banned {user.mention} for {reason}!")
-        try:
-            await user.send(
-                f"You have been banned from {ctx.guild} for {reason}!\nBanned by: {ctx.author}"
-            )
-        except:
-            pass
-    except Exception as e:
-        await ctx.respond(f"Unable to ban that person!")
 
 
 @client.command(description="Kick people")
@@ -1405,5 +1391,5 @@ def setup(client):
   client.add_cog(greetings(bot))
 
 
-client.load_extension('cogs.greetings')
+client.load_extension('cogs.moderation')
 client.run(TOKEN)
