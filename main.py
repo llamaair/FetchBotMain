@@ -1306,4 +1306,5 @@ def setup(client):
 
 
 client.load_extension('cogs.moderation')
+client.load_extension('cogs.fun')
 client.run(TOKEN)
