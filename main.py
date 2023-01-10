@@ -1404,4 +1404,6 @@ async def leaderboard(ctx):
 def setup(client):
   client.add_cog(greetings(bot))
 
+
+client.load_extension('cogs.greetings')
 client.run(TOKEN)
