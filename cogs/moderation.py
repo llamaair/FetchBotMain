@@ -8,9 +8,6 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
     def __init__(self, bot): # this is a special method that is called when the cog is loaded
         self.bot = bot
 
-    @discord.slash_command() # we can also add application commands
-    async def goodbye(self, ctx):
-        await ctx.respond("Bye")
 
     @discord.slash_command(description="Ban people")
     @commands.has_permissions(ban_members=True)
