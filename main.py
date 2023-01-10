@@ -385,34 +385,6 @@ async def echo(ctx, *, message):
     return
 
 
-@client.command(description="Print info about the servers fetchbot is used in")
-@commands.has_permissions(administrator=True)
-async def servers(ctx):
-    embed = discord.Embed()
-    for guild in client.guilds:
-        embed.add_field(name=":crown:", value=guild)
-    await ctx.respond(embed = embed)
-
-
-@client.command(description="Do a action that fetchbot will print with your name")
-async def me(ctx, *, message):
-    if ctx.author == client.user:
-        return
-    await ctx.respond("Successfully performed an action!",ephemeral=True)
-    await ctx.send(f"*{ctx.author.mention} {message}*")
-    return
-
-@client.command(description="Make the bot perform an action")
-@commands.has_permissions(kick_members=True)
-async def botme(ctx, *, message):
-  await ctx.respond("Successfully performed botme",ephemeral=True)
-  await ctx.send(f"*{message}*")
-
-  
-@client.command(description="Threaten a member")
-async def threat(ctx, member: discord.Member, *, threat):
-  await ctx.respond(f"{member}, {ctx.author.mention} says he threatens to {threat}")
-
 
 @client.command(description="Send a message to a user")
 @commands.has_permissions(moderate_members=True)

@@ -36,8 +36,28 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
 
     @discord.slash_command(description="Send a Thanks to another member")
     async def thanks(self, ctx, member: discord.User):
-        await ctx.respond("Thanks sent")
-        await member.send(f"You just recived a thank you from {ctx.author}", ephemeral = True)
+        await ctx.respond("Thanks sent", ephemeral = True)
+        await member.send(f"You just recived a thank you from {ctx.author}")
+
+    @discord.slash_command(description="Print info about the servers fetchbot is used in")
+    @commands.has_permissions(administrator=True)
+    async def servers(self, ctx):
+        embed = discord.Embed()
+        for guild in self.guilds:
+            embed.add_field(name=":crown:", value=guild)
+        await ctx.respond(embed = embed)
+
+    @discord.slash_command(description="Do a action that fetchbot will print with your name")
+    async def me(self, ctx, *, message):
+        await ctx.respond("Successfully performed an action!",ephemeral=True)
+        await ctx.send(f"*{ctx.author.mention} {message}*")
+        return
+
+    @discord.slash_command(description="Make the bot perform an action")
+    @commands.has_permissions(kick_members=True)
+    async def botme(self, ctx, *, message):
+        await ctx.respond("Successfully performed botme",ephemeral=True)
+        await ctx.send(f"*{message}*")
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(tools(bot)) # add the cog to the bot
