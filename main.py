@@ -140,30 +140,6 @@ async def helpmember(ctx,member:discord.Member):
   return await member.send(embed=helpem)
   
 
-@client.command(description="Generate a random number")
-async def randnum(ctx, lowernumber: int, uppernumber: int):
-    number = random.randrange(lowernumber, uppernumber)
-    return await ctx.respond(
-        f"Your random number in range of {lowernumber} and {uppernumber} is {number}"
-    )
-
-@client.command(description="Generate a random hex color!")
-async def randomcolor(ctx):
-  color = discord.Embed(
-    title="Your color",
-    color=discord.Color.random()
-  )
-  await ctx.respond(embed=color)
-
-@client.command(description="See a users avatar!")
-async def avatar(ctx, *, member: discord.Member = None):
-  if member == None:
-    member = ctx.author
-  embed = discord.Embed(title=f"{str(member)}'s avatar :", color = random.randrange(0, 0xffffff)) 
-  embed.set_image(url=member.avatar.url)
-  embed.set_footer(icon_url = ctx.author.avatar.url,text =f"Requested By {ctx.author}")
-  await ctx.respond(embed=embed)
-
 @client.command(aliases=['Gw'], description="Host a giveaway")
 @commands.has_permissions(administrator=True)
 async def giveaway(ctx):
@@ -266,32 +242,6 @@ async def clear(ctx, amount: int):
     await ctx.channel.purge(limit=amount)
 
 
-@client.command(description="Send a reboot reminder")
-@commands.is_owner()
-async def rebootmsg(ctx):
-  await ctx.send("**PERFORMING A PLANNED REBOOT**")
-
-
-@client.command(description="Get a anime picture")
-async def anime(ctx):
-    animelist = [
-        "https://cdn.vox-cdn.com/thumbor/I7I0t87KZ-vf_GSWrH118jwl6d0=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/23437452/The_Spy_x_Family_Anime_Succeeds_Because_of_Its_Characters_.jpg",
-        "https://androspel.com/wp-content/uploads/2022/03/anime-dimensions-tier-list.jpg",
-        "https://www.gamespot.com/a/uploads/screen_kubrick/1732/17320263/4019145-anime-dek-image.jpg"
-    ]
-    animechoise = random.choice(animelist)
-    await ctx.respond(animechoise)
-
-
-@client.command(description="Get a manga picture")
-async def manga(ctx):
-    mangalist = [
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Figure_in_Manga_style_pattern.png/190px-Figure_in_Manga_style_pattern.png",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Manga.png/220px-Manga.png",
-        "https://en.canson.com/sites/default/files/styles/large/public/medias-images/manga-007.jpg?itok=NxaBiaif"
-    ]
-    mangachoice = random.choice(mangalist)
-    await ctx.respond(mangachoice)
 
 
 @client.command(aliases=["mc", "members"],
@@ -1223,4 +1173,5 @@ def setup(client):
 
 client.load_extension('cogs.moderation')
 client.load_extension('cogs.fun')
+client.load_extension('cogs.tools')
 client.run(TOKEN)

@@ -112,5 +112,26 @@ class fun(commands.Cog): # create a class for our cog that inherits from command
         response = random.choice(responselist)
         await ctx.respond(response)
 
+    @discord.slash_command(description="Get a anime picture")
+    async def anime(self, ctx):
+        animelist = [
+        "https://cdn.vox-cdn.com/thumbor/I7I0t87KZ-vf_GSWrH118jwl6d0=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/23437452/The_Spy_x_Family_Anime_Succeeds_Because_of_Its_Characters_.jpg",
+        "https://androspel.com/wp-content/uploads/2022/03/anime-dimensions-tier-list.jpg",
+        "https://www.gamespot.com/a/uploads/screen_kubrick/1732/17320263/4019145-anime-dek-image.jpg"
+    ]
+        animechoise = random.choice(animelist)
+        await ctx.respond(animechoise)
+
+
+    @discord.slash_command(description="Get a manga picture")
+    async def manga(ctx):
+        mangalist = [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Figure_in_Manga_style_pattern.png/190px-Figure_in_Manga_style_pattern.png",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Manga.png/220px-Manga.png",
+        "https://en.canson.com/sites/default/files/styles/large/public/medias-images/manga-007.jpg?itok=NxaBiaif"
+    ]
+        mangachoice = random.choice(mangalist)
+        await ctx.respond(mangachoice)
+
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(fun(bot)) # add the cog to the bot
