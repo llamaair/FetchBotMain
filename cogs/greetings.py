@@ -4,8 +4,8 @@ from discord.ext import commands
 class Greetings(commands.Cog): # create a class for our cog that inherits from commands.Cog
     # this class is used to create a cog, which is a module that can be added to the bot
 
-    def __init__(self, bot): # this is a special method that is called when the cog is loaded
-        self.bot = bot
+    def __init__(self, client): # this is a special method that is called when the cog is loaded
+        self.bot = client
 
     @commands.command() # creates a prefixed command
     async def hello(self, ctx): # all methods now must have both self and ctx parameters
