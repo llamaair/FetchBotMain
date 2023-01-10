@@ -58,40 +58,6 @@ def check_if_user_has_premium(ctx):
   return True
 
 
-@client.command(description="Add something to the database!")
-async def dblog(ctx, dbplace, *, log):
-  x = dbplace
-  db_keys = db.keys()
-  if x in db_keys:
-    await ctx.respond(f"{x} is a key which you just tried to overrite! Don't try that again! This incident has been logged and reported.")
-  else:
-    db[dbplace] = log
-    await ctx.respond(f"Successfully added {log} to {dbplace}")
-
-@client.command(description="Delete a key from the database")
-@commands.has_role('Admin')
-async def cleardb(ctx,*,key):
-  del db[key]
-  await ctx.respond(f"Successfully deleted key; **{key}** from the database")
-
-@client.command(description="Overwrite a key in the database")
-@commands.has_role('Admin')
-async def overwrite(ctx,dbplace,*,log):
-  db[dbplace] = log
-  await ctx.respond(f"Successfully overwritten {dbplace} with {log}")
-
-@client.command(description="Read the database")
-@commands.has_role('Admin')
-async def dbread(ctx, dbplace):
-  value = db[dbplace]
-  await ctx.respond(value)
-
-@client.command(description="List all DB keys")
-async def dblist(ctx):
-  keys = db.keys()
-  await ctx.respond(keys)
-
-
 @client.command(aliases=['h'], description="Get a list of commands!")
 async def help(ctx):
     helpem = discord.Embed(
@@ -135,7 +101,7 @@ async def help(ctx):
     db["logs"] = "Commands.help"
 
 @client.command(description="Send help to a member!")
-@commands.has_role('Admin')
+@commands.has_permissions(manage_guild=True)
 async def helpmember(ctx,member:discord.Member):
   helpem = discord.Embed(
     title="✦Help✦",
@@ -198,7 +164,7 @@ async def avatar(ctx, *, member: discord.Member = None):
   await ctx.respond(embed=embed)
 
 @client.command(aliases=['Gw'], description="Host a giveaway")
-@commands.has_role("Giveaways")
+@commands.has_permissions(administrator=True)
 async def giveaway(ctx):
     await ctx.respond(
         "Hello . Please answer to these questions within 15 Seconds to Start the giveaway."
@@ -406,7 +372,7 @@ async def fact(ctx):
 
 
 @client.command(description="Send a reboot reminder")
-@commands.has_role("Admin")
+@commands.is_owner()
 async def rebootmsg(ctx):
   await ctx.send("**PERFORMING A PLANNED REBOOT**")
   db["logs"] = "Commands.rebootmsg"
@@ -453,7 +419,7 @@ async def invite(ctx):
 
 
 @client.command(description="Send a update ping about a new FetchBot version")
-@commands.has_role('Admin')
+@commands.is_owner()
 async def update(ctx, pings, version):
     await ctx.send(
         f"{pings}, A new version of FetchBot is now out, Version; {version}!")
@@ -494,14 +460,14 @@ async def creroll(ctx, *, name):
 
 
 @client.command(pass_context=True, description="Change a member's nick")
-@commands.has_role('Admin')
+@commands.has_permissions(moderate_members=True)
 async def flushnick(ctx, member: discord.Member, nick):
     await member.edit(nick=nick)
     await ctx.respond(f'{member.mention}s nick is now flushed and updated')
 
 
 @client.command(pass_context=True, description="Reset a member's nick")
-@commands.has_role('Admin')
+@commands.has_permissions(moderate_members=True)
 async def flush(ctx, member: discord.Member):
     await member.edit(nick='flushed_nick')
     await ctx.respond(f'Flushed nick for {member.mention}')
@@ -525,14 +491,9 @@ async def thanks(ctx, member: discord.User):
     await ctx.respond("Thanks sent")
     await member.send(f"You just recived a thank you from {ctx.author}")
 
-@client.command(description="View the logs")
-@commands.has_role("Moderator")
-async def logs(ctx):
-  value = db["logs"]
-  await ctx.respond(f"The latest logged move was; {value}")
 
 @client.command(description="Reroll a giveaway")
-@commands.has_role("Giveaways")
+@commands.has_permissions(administrator=True)
 async def reroll(ctx, channel: discord.TextChannel, id_):
     if channel == None:
         await ctx.respond("Please mention a channel.")
@@ -586,6 +547,7 @@ async def rps(ctx, *, player_choice):
 
 
 @client.command(description="Echo a message")
+@commands.has_permissions(administrator=True)
 async def echo(ctx, *, message):
     if message == None:
         await ctx.respond("Please enter a message to echo.")
@@ -597,10 +559,10 @@ async def echo(ctx, *, message):
 
 
 @client.command(description="Print info about the servers fetchbot is used in")
+@commands.has_permissions(administrator=True)
 async def servers(ctx):
     for guild in client.guilds:
         await ctx.respond(guild.name)
-        db["logs"] = "Commands.server"
 
 
 @client.command(
@@ -639,9 +601,9 @@ async def react(ctx, difficulty):
 
     users.pop(users.index(client.user))
     if ctx.author in users:
-        await ctx.respond("Wellplayed ! You won !")
+        await ctx.respond("Well played! You won!")
         return
-    await ctx.respond("You didn't react in time !")
+    await ctx.respond("You didn't react in time!")
     return
     print(users)
 
@@ -654,24 +616,21 @@ async def me(ctx, *, message):
     return
 
 @client.command(description="Make the bot perform an action")
-@commands.has_role("Moderator")
+@commands.has_permissions(kick_members=True)
 async def botme(ctx, *, message):
   db["logs"] = "Commands.botme"
   await ctx.respond("Successfully performed botme",ephemeral=True)
   await ctx.send(f"*{message}*")
 
 @client.command(description="Warn a member")
-@commands.has_role("Moderator")
+@commands.has_permissions(moderate_members=True)
 async def warn(ctx, member: discord.Member, *, reason):
   await ctx.respond("Warning sent",ephemeral=True)
   await ctx.send(f"{member}, you have been warned by {ctx.author.mention} for {reason}")
-  db["logs"] = "Commands.warn"
   
 @client.command(description="Threaten a member")
-@commands.has_role("Verified")
 async def threat(ctx, member: discord.Member, *, threat):
   await ctx.respond(f"{member}, {ctx.author.mention} says he threatens to {threat}")
-  db["logs"] = "Commands.threat"
 
 
 @client.command(description="Ask me a question!")
@@ -679,26 +638,22 @@ async def ask(ctx, *, question):
   responselist=['Yes', 'No', 'Maybe', 'Sure!', 'Of course!', 'Why not', 'I am tired! Ask me later instead.', 'I have no idea', 'Stupid humans...']
   response = random.choice(responselist)
   await ctx.respond(response)
-  db["logs"] = "Commands.ask"
 
 @client.command(description="How stupid are you?")
 async def stupid(ctx):
   stupidlist=['100%', '39%', '0%', '50%', '70%', '20%', '95%', '13%']
   stupidity= random.choice(stupidlist)
   await ctx.respond(f"You are {stupidity} stupid")
-  db["logs"] = "Commands.stupid"
-
 
 
 @client.command(description="Send a message to a user")
-@commands.has_role('Moderator')
+@commands.has_permissions(moderate_members=True)
 async def msg(ctx,member : discord.Member,*,message):
   await member.send(message)
   await ctx.respond("Message sent!",ephemeral=True)
   db["logs"] = "Commands.msg"
 
 @client.command(description="Host a FetchRoyale game")
-@commands.has_role('Verified')
 async def fetchroyale(ctx):
   await ctx.respond("Starting FetchRoyale game!",ephemeral=True)
   startmsg = await ctx.send(f"{ctx.author.mention} is hosting a FetchRoyale game! React below to join! The game will start in 1 minute.")
@@ -780,10 +735,6 @@ async def abuse(ctx, user:discord.Member):
   else:
     await ctx.respond(f"*{ctx.author} abuses {user}*")
 
-@client.command(description="Overwrite the logs")
-async def logreset(ctx, *, input):
-  db["logs"] = input
-  await ctx.respond(f"Logs reset to; {input}")
 
 @client.command(description="Use + to calculate something!")
 async def calculate(ctx, firstnumber:int, secondnumber:int):
@@ -830,7 +781,7 @@ async def boostcount(ctx):
 
 @client.command(description="Get a invite link to our support server!")
 async def support(ctx):
-  await ctx.respond("Have you found a issue in FetchBot or a bug? Join our support server; https://discord.gg/uBEK23mmmK")
+  await ctx.respond("Have you found an issue with FetchBot or a bug? Join our support server; https://discord.gg/uBEK23mmmK")
 
 
 @client.command(description="Subtract a number from another number!")
@@ -838,7 +789,7 @@ async def subtract(ctx, firstnumber:int, secondnumber:int):
   await ctx.respond(f"{firstnumber}-{secondnumber} = {firstnumber-secondnumber}")
 
 @client.command(description="Pull the latest version from github and restart the bot")
-@commands.has_role('FetchAdmin')
+@commands.is_owner()
 async def gitpull(ctx):
   await ctx.respond("Pulling from git and restarting",ephemeral=True)
   await ctx.send("**Performing a planned github pull and restarting**")
@@ -872,7 +823,7 @@ async def meme(ctx):
   await ctx.respond(meme)
 
 @client.command(description="Send a announcement using the bot!")
-@commands.has_role('Admin')
+@commands.has_permissions(administrator=True)
 @check(check_if_user_has_premium)
 async def announce(ctx,announcement):
   embed=discord.Embed(
@@ -957,14 +908,8 @@ async def spotify(ctx,artist):
 async def pokemon(ctx,pokemon):
   await ctx.respond(f"https://pokemon.com/us/pokedex/{pokemon}")
 
-@client.command(description="GhostPing a user")
-@check(check_if_user_has_premium)
-async def ping(ctx,user:discord.Member):
-  await ctx.respond("Ping sent",ephemeral=True)
-  await ctx.channel.send(f"Someone just pinged you {user.mention}! Maybe a cat picture will help? https://i.pinimg.com/originals/c9/dc/d4/c9dcd4334391176f134b655f01b4200b.jpg")
-
 @client.command(description="Set a slowmode!")
-@commands.has_role('Admin')
+@commands.has_permissions(manage_channels=True)
 @check(check_if_user_has_premium)
 async def slowmode(ctx,seconds:int):
   await ctx.channel.edit(slowmode_delay=seconds)
@@ -1054,7 +999,7 @@ async def setmoney(user,change = 0,mode = "wallet"):
   return bal
 
 @client.command(description="Set someones balance")
-@commands.has_role('Admin')
+@commands.has_permissions(administrator=True)
 async def set(ctx,member:discord.Member,amount:int,mode="Wallet"):
   possible = ["Wallet","Bank"]
   if mode not in possible : 
@@ -1469,6 +1414,6 @@ async def leaderboard(ctx):
         em.set_footer(text =f"Requested By {ctx.author}")
         await ctx.respond(embed = em)
   except AttributeError:
-    await ctx.respond(":x: There are not that many account stored in my database.")
+    await ctx.respond(":x: There are not that many accounts stored in my database.")
 
 client.run(TOKEN)
