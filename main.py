@@ -23,6 +23,9 @@ intents = discord.Intents.all()
 
 client = discord.Bot(intents=intents, help_command=None)
 
+global lastMeme
+lastMeme = 0
+
 #Defining startup
 @client.event
 async def on_ready():
