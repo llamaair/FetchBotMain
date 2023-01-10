@@ -98,7 +98,6 @@ async def help(ctx):
     helpem.set_author(name=client.user.name, icon_url=client.user.avatar.url)
 
     return await ctx.respond(embed=helpem)
-    db["logs"] = "Commands.help"
 
 @client.command(description="Send help to a member!")
 @commands.has_permissions(manage_guild=True)
@@ -144,7 +143,6 @@ async def randnum(ctx, lowernumber: int, uppernumber: int):
     return await ctx.respond(
         f"Your random number in range of {lowernumber} and {uppernumber} is {number}"
     )
-    db["logs"] = "Commands.randnum"
 
 @client.command(description="Generate a random hex color!")
 async def randomcolor(ctx):
@@ -270,7 +268,6 @@ async def ban(ctx, user: discord.User, reason="No reason Provided"):
             pass
     except Exception as e:
         await ctx.respond(f"Unable to ban that person!")
-        db["logs"] = "Commands.ban{attempt}"
 
 
 @client.command(description="Kick people")
@@ -288,7 +285,6 @@ async def kick(ctx, user: discord.User, reason="No reason Provided"):
             pass
     except Exception as e:
         await ctx.respond(f"Unable to kick that person!")
-        db["logs"] = "Commands.kick{attempt}"
 
 
 @client.command(description="Get a cute cat picture")
@@ -305,7 +301,6 @@ async def cat(ctx):
     ]
     catchoice = random.choice(catlinks)
     await ctx.respond(catchoice)
-    db["logs"] = "Commands.cat"
 
 
 @client.command(description="Get a cute dog picture")
@@ -313,7 +308,6 @@ async def dog(ctx):
     await ctx.respond(
         "https://i.natgeofe.com/n/3faa2b6a-f351-4995-8fff-36d145116882/domestic-dog_16x9.jpg"
     )
-    db["logs"] = "Commands.dog"
 
 
 @client.command(description="Get a picture of a fat cat!")
@@ -330,7 +324,6 @@ async def fatdog(ctx):
     ]
     fatdogchoise = random.choice(fatdoglist)
     await ctx.respond(fatdogchoise)
-    db["logs"] = "Commands.fatdog"
 
 
 @client.command(aliases=['purge', 'delete'], description="Delete messages")
@@ -340,7 +333,6 @@ async def clear(ctx, amount: int):
     time.sleep(1)
     amount += 1
     await ctx.channel.purge(limit=amount)
-    db["logs"] = "Commands.purge"
 
 
 @client.command(description="Print a random fact")
@@ -368,14 +360,12 @@ async def fact(ctx):
     ]
     factlinkchosen = random.choice(factlinks)
     await ctx.respond(factlinkchosen)
-    db["logs"] = "Commands.fact"
 
 
 @client.command(description="Send a reboot reminder")
 @commands.is_owner()
 async def rebootmsg(ctx):
   await ctx.send("**PERFORMING A PLANNED REBOOT**")
-  db["logs"] = "Commands.rebootmsg"
 
 
 @client.command(description="Get a anime picture")
@@ -618,7 +608,6 @@ async def me(ctx, *, message):
 @client.command(description="Make the bot perform an action")
 @commands.has_permissions(kick_members=True)
 async def botme(ctx, *, message):
-  db["logs"] = "Commands.botme"
   await ctx.respond("Successfully performed botme",ephemeral=True)
   await ctx.send(f"*{message}*")
 
@@ -651,7 +640,6 @@ async def stupid(ctx):
 async def msg(ctx,member : discord.Member,*,message):
   await member.send(message)
   await ctx.respond("Message sent!",ephemeral=True)
-  db["logs"] = "Commands.msg"
 
 @client.command(description="Host a FetchRoyale game")
 async def fetchroyale(ctx):
@@ -660,14 +648,12 @@ async def fetchroyale(ctx):
   startmsg = await startmsg.add_reaction("⚔️")
   await asyncio.sleep(5)
   await ctx.send("**FetchRoyale is now about to start!**")
-  db["logs"] = "Commands.fetchroyale"
       
 @client.command(description="How smart are you?")
 async def smart(ctx):
   smartlist=["0%", "100%", "50%", "20%", "67%"]
   smart = random.choice(smartlist)
   await ctx.respond(f"You are {smart} smart!")
-  db["logs"] = "Commands.smart"
 
 @client.command(description="Delete the channel you use the command in")
 @commands.has_permissions(manage_channels=True)
@@ -675,13 +661,11 @@ async def delchannel(ctx):
   await ctx.respond("Channel is now being deleted",ephemeral=True)
   await asyncio.sleep(2)
   await ctx.channel.delete()
-  db["logs"] = "Commands.delchannel"
 
 @client.command(description="See how long the bot has been up for")
 async def uptime(ctx):
   uptime = str(datetime.timedelta(seconds=int(round(time.time()-startTime))))
   await ctx.respond(f"The Bot has been up for {uptime}")
-  db["logs"] = "Commands.uptime"
 
 
 @client.command(description="Add FetchBot Premium to a member")
@@ -721,13 +705,11 @@ async def challenge(ctx):
   challengelist=["Eat a hamburger in 20 seconds", "Say yeet in your most southern accent", "Don't speak today", "Stop watching TV", "Eat slower today", "Do 15 sit-ups", "Learn to draw a face", "Don't drink soda today", "Do something you are scared of", "Abuse FetchBot"]
   challenge = random.choice(challengelist)
   await ctx.respond(challenge)
-  db["logs"] = "Commands.challenge"
 
 
 
 @client.command(description="Abuse someone!")
 async def abuse(ctx, user:discord.Member):
-  db["logs"] = "Commands.abuse"
   if user.bot:
     randlist=[f"kills {ctx.author.mention}", f"kicks {ctx.author.mention} out of the server", f"eats {ctx.author.mention}", f"abuses {ctx.author.mention}", f"eyes {ctx.author.mention} slowly"]
     randresponse=random.choice(randlist)
@@ -872,7 +854,6 @@ async def poll(ctx,*,message):
   await lol.add_reaction("👍")
   await lol.add_reaction("👎")
   await ctx.respond("Poll started", ephemeral=True)
-  db["logs"] = "Commands.poll"
 
 @client.command(description="Get a prawn picture")
 @check(check_if_user_has_premium)
