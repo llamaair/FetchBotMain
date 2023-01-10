@@ -1401,5 +1401,8 @@ async def leaderboard(ctx):
   except AttributeError:
     await ctx.respond(":x: There are not that many accounts stored in my database.")
 
-client.add_cog(greetings(bot))
+def setup(client):
+  client.add_cog(greetings(bot))
+
+
 client.run(TOKEN)
