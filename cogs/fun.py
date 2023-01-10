@@ -124,7 +124,7 @@ class fun(commands.Cog): # create a class for our cog that inherits from command
 
 
     @discord.slash_command(description="Get a manga picture")
-    async def manga(ctx):
+    async def manga(self, ctx):
         mangalist = [
         "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Figure_in_Manga_style_pattern.png/190px-Figure_in_Manga_style_pattern.png",
         "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Manga.png/220px-Manga.png",
