@@ -133,5 +133,18 @@ class fun(commands.Cog): # create a class for our cog that inherits from command
         mangachoice = random.choice(mangalist)
         await ctx.respond(mangachoice)
 
+    @discord.slash_command(aliases=['fu'], description="Predict your future")
+    async def future(self, ctx):
+        futurelist = [
+        'You will become poor and homeless',
+        'You are going to become rich, and develop a genious tool for Pc;s',
+        'You are going to have a decent job that pays a decent ammount of money',
+        'You are going to live untill you get 150 years!'
+        ]
+        future = random.choice(futurelist)
+        await ctx.respond(future)
+
+
+
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(fun(bot)) # add the cog to the bot

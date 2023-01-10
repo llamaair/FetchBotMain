@@ -34,5 +34,10 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
         embed.set_footer(icon_url = ctx.author.avatar.url,text =f"Requested By {ctx.author}")
         await ctx.respond(embed=embed)
 
+    @discord.slash_command(description="Send a Thanks to another member")
+    async def thanks(self, ctx, member: discord.User):
+        await ctx.respond("Thanks sent")
+        await member.send(f"You just recived a thank you from {ctx.author}")
+
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(tools(bot)) # add the cog to the bot

@@ -317,23 +317,6 @@ async def flush(ctx, member: discord.Member):
     await ctx.respond(f'Flushed nick for {member.mention}')
 
 
-@client.command(aliases=['fu'], description="Predict your future")
-async def future(ctx):
-    futurelist = [
-        'You will become poor and homeless',
-        'You are going to become rich, and develop a genious tool for Pc;s',
-        'You are going to have a decent job that pays a decent ammount of money',
-        'You are going to live untill you get 150 years!'
-    ]
-    future = random.choice(futurelist)
-    await ctx.respond(future)
-
-
-@client.command(aliases=["Thankyou", "Thank you"],
-                description="Send a Thanks to another member")
-async def thanks(ctx, member: discord.User):
-    await ctx.respond("Thanks sent")
-    await member.send(f"You just recived a thank you from {ctx.author}")
 
 
 @client.command(description="Reroll a giveaway")
