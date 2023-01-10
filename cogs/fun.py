@@ -77,6 +77,40 @@ class fun(commands.Cog): # create a class for our cog that inherits from command
         factlinkchosen = random.choice(factlinks)
         await ctx.respond(factlinkchosen)
         
+    @discord.slash_command(description="Get a random challenge!")
+    async def challenge(self, ctx):
+        challengelist=["Eat a hamburger in 20 seconds", "Say yeet in your most southern accent", "Don't speak today", "Stop watching TV", "Eat slower today", "Do 15 sit-ups", "Learn to draw a face", "Don't drink soda today", "Do something you are scared of", "Abuse FetchBot"]
+        challenge = random.choice(challengelist)
+        await ctx.respond(challenge)
+
+
+
+    @discord.slash_command(description="Abuse someone!")
+    async def abuse(self, ctx, user:discord.Member):
+        if user.bot:
+            randlist=[f"kills {ctx.author.mention}", f"kicks {ctx.author.mention} out of the server", f"eats {ctx.author.mention}", f"abuses {ctx.author.mention}", f"eyes {ctx.author.mention} slowly"]
+            randresponse=random.choice(randlist)
+            await ctx.respond(f"*{randresponse}*")
+        else:
+            await ctx.respond(f"*{ctx.author} abuses {user}*")
+
+    @discord.slash_command(description="How stupid are you?")
+    async def stupid(self, ctx):
+        stupidlist=['100%', '39%', '0%', '50%', '70%', '20%', '95%', '13%']
+        stupidity= random.choice(stupidlist)
+        await ctx.respond(f"You are {stupidity} stupid")
+
+    @discord.slash_command(description="How smart are you?")
+    async def smart(self, ctx):
+        smartlist=["0%", "100%", "50%", "20%", "67%"]
+        smart = random.choice(smartlist)
+        await ctx.respond(f"You are {smart} smart!")
+    
+    @discord.slash_command(description="Ask me a question!")
+    async def ask(self, ctx, *, question):
+        responselist=['Yes', 'No', 'Maybe', 'Sure!', 'Of course!', 'Why not', 'I am tired! Ask me later instead.', 'I have no idea', 'Stupid humans...']
+        response = random.choice(responselist)
+        await ctx.respond(response)
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(fun(bot)) # add the cog to the bot

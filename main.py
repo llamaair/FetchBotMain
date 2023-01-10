@@ -455,51 +455,11 @@ async def echo(ctx, *, message):
 @client.command(description="Print info about the servers fetchbot is used in")
 @commands.has_permissions(administrator=True)
 async def servers(ctx):
+    embed = discord.Embed()
     for guild in client.guilds:
-        await ctx.respond(guild.name)
+        embed.add_field(name=":crown:", value=guild)
+    await ctx.respond(embed = embed)
 
-
-@client.command(
-    description=
-    "React fast with the right emoji to win! Choose between hard and easy")
-async def react(ctx, difficulty):
-    if difficulty == None:
-        await ctx.respond(
-            "Please choose the difficulty (easy/hard) Ex : ?react hard.")
-        return
-    possible = ["hard", "easy"]
-    if difficulty.lower() not in possible:
-        await ctx.respond("Please choose from hard or easy !")
-        return
-
-    await ctx.send("Sending the message (React on the shown emoji to win!) ..."
-                   )
-    easylist = ["🙂", "😋", "😝", "😀", "😃", "😏", "😩", "🥺", "🧐"]
-    hardlist = ["🙁", "😕", "☹️", "😞", "😔", "😠", "😟", "😦", "😧"]
-    choosenlist = (hardlist if difficulty == "hard" else easylist)
-    emoji = random.choice(choosenlist)
-    number = 0
-    for i in choosenlist:
-        if i != emoji:
-            number += 1
-        elif i == emoji:
-            break
-
-    new_msg = await ctx.send(f"React with {emoji} in 3 seconds !")
-    for i in choosenlist:
-        await new_msg.add_reaction(i)
-
-    channel = ctx.channel
-    the_msg = await channel.fetch_message(new_msg.id)
-    users = await the_msg.reactions[number].users().flatten()
-
-    users.pop(users.index(client.user))
-    if ctx.author in users:
-        await ctx.respond("Well played! You won!")
-        return
-    await ctx.respond("You didn't react in time!")
-    return
-    print(users)
 
 @client.command(description="Do a action that fetchbot will print with your name")
 async def me(ctx, *, message):
@@ -521,40 +481,13 @@ async def threat(ctx, member: discord.Member, *, threat):
   await ctx.respond(f"{member}, {ctx.author.mention} says he threatens to {threat}")
 
 
-@client.command(description="Ask me a question!")
-async def ask(ctx, *, question):
-  responselist=['Yes', 'No', 'Maybe', 'Sure!', 'Of course!', 'Why not', 'I am tired! Ask me later instead.', 'I have no idea', 'Stupid humans...']
-  response = random.choice(responselist)
-  await ctx.respond(response)
-
-@client.command(description="How stupid are you?")
-async def stupid(ctx):
-  stupidlist=['100%', '39%', '0%', '50%', '70%', '20%', '95%', '13%']
-  stupidity= random.choice(stupidlist)
-  await ctx.respond(f"You are {stupidity} stupid")
-
-
 @client.command(description="Send a message to a user")
 @commands.has_permissions(moderate_members=True)
 async def msg(ctx,member : discord.Member,*,message):
   await member.send(message)
   await ctx.respond("Message sent!",ephemeral=True)
 
-@client.command(description="Host a FetchRoyale game")
-async def fetchroyale(ctx):
-  await ctx.respond("Starting FetchRoyale game!",ephemeral=True)
-  startmsg = await ctx.send(f"{ctx.author.mention} is hosting a FetchRoyale game! React below to join! The game will start in 1 minute.")
-  startmsg = await startmsg.add_reaction("⚔️")
-  await asyncio.sleep(5)
-  await ctx.send("**FetchRoyale is now about to start!**")
       
-@client.command(description="How smart are you?")
-async def smart(ctx):
-  smartlist=["0%", "100%", "50%", "20%", "67%"]
-  smart = random.choice(smartlist)
-  await ctx.respond(f"You are {smart} smart!")
-
-
 @client.command(description="See how long the bot has been up for")
 async def uptime(ctx):
   uptime = str(datetime.timedelta(seconds=int(round(time.time()-startTime))))
@@ -592,23 +525,6 @@ async def removepremium(ctx, user : discord.Member):
     json.dump(premium_users_list, f)
 
   await ctx.respond(f"{user.mention} has been removed!")
-
-@client.command(description="Get a random challenge!")
-async def challenge(ctx):
-  challengelist=["Eat a hamburger in 20 seconds", "Say yeet in your most southern accent", "Don't speak today", "Stop watching TV", "Eat slower today", "Do 15 sit-ups", "Learn to draw a face", "Don't drink soda today", "Do something you are scared of", "Abuse FetchBot"]
-  challenge = random.choice(challengelist)
-  await ctx.respond(challenge)
-
-
-
-@client.command(description="Abuse someone!")
-async def abuse(ctx, user:discord.Member):
-  if user.bot:
-    randlist=[f"kills {ctx.author.mention}", f"kicks {ctx.author.mention} out of the server", f"eats {ctx.author.mention}", f"abuses {ctx.author.mention}", f"eyes {ctx.author.mention} slowly"]
-    randresponse=random.choice(randlist)
-    await ctx.respond(f"*{randresponse}*")
-  else:
-    await ctx.respond(f"*{ctx.author} abuses {user}*")
 
 
 @client.command(description="Use + to calculate something!")
