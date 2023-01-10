@@ -832,6 +832,10 @@ async def announce(ctx,announcement):
   await ctx.channel.send(embed=embed)
   await ctx.respond("Successfully sent announcement!",ephemeral=True)
 
+@client.command(description="Get a link to the FetchBot website")
+async def website(ctx):
+  await ctx.respond("https://marcusolsson123.wixsite.com/fetchbot")
+
 @client.command(description="Lock a channel!")
 @commands.has_permissions(manage_channels=True)
 @check(check_if_user_has_premium)
