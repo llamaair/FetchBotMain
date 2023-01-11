@@ -15,6 +15,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
         self.anti_spam = commands.CooldownMapping.from_cooldown(5, 15, commands.BucketType.member)
 
     @discord.slash_command(description="Activate a premium subscription with a code")
+    @commands.has_permissions(administrator = True)
     async def automod(self, ctx):
         with open("automodguilds.json") as f:
             automodguild = json.load(f)
