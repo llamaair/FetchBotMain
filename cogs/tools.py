@@ -112,9 +112,12 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
         embed.set_footer(text=f"Requested by: {ctx.author.name}")
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(description="Calculate something!")
-    async def calculate(self, ctx, firstnumber:int, operator, secondnumber:int):
-        await ctx.respond(f"{firstnumber}{operator}{secondnumber}")
+    @discord.slash_command(description="Just a calculator")
+    async def calculate(self, ctx, operation, *nums):
+        if operation not in ['+', '-', '*', '/']:
+            await ctx.respond('Please type a valid operation type.')
+        var = f' {operation} '.join(nums)
+        await ctx.respond(f'{var} = {eval(var)}')
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(tools(bot)) # add the cog to the bot
