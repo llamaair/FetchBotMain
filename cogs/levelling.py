@@ -41,7 +41,7 @@ class levelling(commands.Cog): # create a class for our cog that inherits from c
             lvl_start = users[f'{message.author.id}']['level']
             lvl_end = int(experience ** (1 / 4))
             if lvl_start < lvl_end:
-                await message.channel.send(f'{user.mention} has leveled up to level {lvl_end}')
+                await message.channel.send(f'{message.author.mention} has leveled up to level {lvl_end}')
                 users[f'{message.author.id}']['level'] = lvl_end
 
         with open('users.json', 'w') as f:
