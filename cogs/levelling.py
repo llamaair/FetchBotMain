@@ -64,8 +64,8 @@ class levelling(commands.Cog): # create a class for our cog that inherits from c
                 await message.channel.send(f'{message.author.mention} has reached level {lvl_end}! **GG**')
                 users[f'{message.author.id}']['level'] = lvl_end
 
-        with open('levels.json', 'w') as f:
-            json.dump(users, f)
+            with open('levels.json', 'w') as f:
+                json.dump(users, f)
 
 
 def setup(bot): # this is called by Pycord to setup the cog
