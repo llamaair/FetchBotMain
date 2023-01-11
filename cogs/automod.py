@@ -24,7 +24,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
             await ctx.respond("Disabled automod, saving settings...")
 
         with open("automodguilds.json", "w+") as f:
-            json.dump(codes_list, f)
+            json.dump(automodguild, f)
 
         await ctx.respond("Settings saved!")
 
