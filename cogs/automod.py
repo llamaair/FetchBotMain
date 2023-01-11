@@ -12,6 +12,8 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
 
     def __init__(self, bot): # this is a special method that is called when the cog is loaded
         self.bot = bot
+        self.anti_spam = commands.CooldownMapping.from_cooldown(5, 15, commands.BucketType.member)
+        self.too_many_violations = commands.CooldownMapping.from_cooldown(4, 60, commands.BucketType.member)
 
     @discord.slash_command(description="Activate a premium subscription with a code")
     async def automod(self, ctx):
@@ -61,6 +63,15 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
             if len(message.raw_mentions) > 14:
                 await message.author.send(f"You have been banned from {message.guild} for mass mentioning people by FetchBot Automod")
                 await message.author.ban(reason = "Mass mentioning")
+            bucket = self.anti_spam.get_bucket(message)
+            retry_after = bucket.update_rate_limit()
+            if retry_after:
+                await message.delete()
+                await message.channel.send(f"{message.author.mention}, don't spam!", delete_after = 10)
+                violations = self.too_many_violations.get_bucket(message)
+                check = violations.update_rate_limit()
+                if check:
+                    await message.author.timeout(timedelta(minutes = 10), reason = "Spamming")
 
 
 def setup(bot): # this is called by Pycord to setup the cog
