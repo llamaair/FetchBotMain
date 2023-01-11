@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import asyncio
+import time
 import random
 
 class tools(commands.Cog): # create a class for our cog that inherits from commands.Cog
@@ -61,7 +62,7 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
 
     @discord.slash_command(description="Ping!")
     async def pong(self, ctx):
-        await ctx.respond('Pong! {0}'.format(round(client.latency, 1)))
+        await ctx.respond('Pong! {0}'.format(round(self.latency, 1)))
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(tools(bot)) # add the cog to the bot
