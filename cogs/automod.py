@@ -52,6 +52,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
                 await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
             if message.raw_mentions > 5:
+                print("Mentions is bigger than 5!")
                 await message.delete()
                 await message.channel.send("Please do not mass mention people :skull:")
 
