@@ -62,7 +62,7 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
 
     @discord.slash_command(description="Ping!")
     async def pong(self, ctx):
-        await ctx.respond('Pong! {0}'.format(round(self.latency, 1)))
+        await ctx.respond('Pong! {0}'.format(round(bot.latency, 1)))
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(tools(bot)) # add the cog to the bot
