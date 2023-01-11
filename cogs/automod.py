@@ -12,7 +12,6 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
 
     @discord.slash_command(description="Activate a premium subscription with a code")
     async def automod(self, ctx):
-        authorr = ctx.author
         with open("automodguilds.json") as f:
             automodguild = json.load(f)
 
@@ -27,6 +26,18 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
             json.dump(automodguild, f)
 
         await ctx.respond("Settings saved!")
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        username = str(message.author)
+        user_message = str(message.content)
+        channel = str(message.channel.name)
+        guild = str(message.guild.name)
+        print(f'{username} : {user_message} ({channel}) ({guild})')
+        for word in banned_words:
+            for word in message.content:
+                await message.delete()
+                await message.channel.send(f"{message.author.mention}, you just used a banned word, please do not do that again :eyes:")
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(automod(bot)) # add the cog to the bot

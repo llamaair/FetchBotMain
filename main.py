@@ -35,13 +35,6 @@ async def on_ready():
     global startTime
     startTime = time.time()
 
-@client.event
-async def on_message(message):
-  username = str(message.author)
-  user_message = str(message.content)
-  channel = str(message.channel.name)
-  guild = str(message.guild.name)
-  print(f'{username} : {user_message} ({channel}) ({guild})')
     
 
 @client.event
