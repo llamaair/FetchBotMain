@@ -26,7 +26,7 @@ class levelling(commands.Cog): # create a class for our cog that inherits from c
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.bot == False:
-            with open('users.json', 'r') as f:
+            with open('levels.json', 'r') as f:
                 users = json.load(f)
 
             if not f'{message.author.id}' in users:
