@@ -16,11 +16,11 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
         with open("automodguilds.json") as f:
             autmodguild = json.load(f)
 
-        if guild.id not in automodguild:
-            automodguild.append(self.guild.id)
+        if ctx.guild.id not in automodguild:
+            automodguild.append(ctx.guild.id)
             await ctx.respond("Enabled automod, saving settings...")
-        elif guild.id in automodguild:
-            automodguild.remove(self.guild.id)
+        elif ctx.guild.id in automodguild:
+            automodguild.remove(ctx.guild.id)
             await ctx.respond("Disabled automod, saving settings...")
 
         with open("automodguilds.json", "w+") as f:
