@@ -463,7 +463,7 @@ async def gitpull(ctx):
 
 @client.command(description="Get information about FetchBot Premium")
 async def premium(ctx):
-  await ctx.respond("FetchBot Premium gives you access to a whole lot of new commands, aswell as more features! You can find the list with premium commands at the command; /help")
+  await ctx.respond("FetchBot Premium gives you access to a whole lot of new commands, aswell as more features! You can find the list with premium commands by using /help or going to the official FetchBot website. FetchBot premium currently costs 1$ and you can buy it here; https://marcusolsson123.wixsite.com/fetchbot/fetchbot-premium")
 
 
 @client.command(description="See if you have premium!")
