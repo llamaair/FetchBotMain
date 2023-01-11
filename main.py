@@ -453,58 +453,6 @@ async def removepremium(ctx, user : discord.Member):
   await ctx.respond(f"{user.mention} has been removed!")
 
 
-@client.command(description="Use + to calculate something!")
-async def calculate(ctx, firstnumber:int, secondnumber:int):
-  await ctx.respond(f"{firstnumber}+{secondnumber} = {firstnumber+secondnumber}")
-
-@client.command(description="Get info about the server")
-async def serverinfo(ctx):
-  id = ctx.guild.id
-  txt = len(ctx.guild.text_channels)
-  vc = len(ctx.guild.voice_channels)
-  tim = str(ctx.guild.created_at)
-  owner=ctx.guild.owner
-  embed=discord.Embed(
-    title=f"Server info"
-  )
-  embed.add_field(name=":ballot_box: Server Name", value=f"{ctx.guild}")
-  embed.add_field(name=":crown: Server Owner", value=owner)
-  embed.add_field(name=":calendar: Created at", value=f"{tim}")
-  embed.add_field(name="Text Channels", value=f"{txt}")
-  embed.add_field(name="Voice Channels", value=f"{vc}")
-  embed.add_field(name="ID", value=f"{id}")
-  await ctx.respond(embed=embed)
-
-@client.command(description="Get info about a member")
-async def whois(ctx, member:discord.Member):
-  j = str(member.joined_at)[0:11]
-  c = str(member.created_at)[0:11]
-  embed=discord.Embed(
-    title="User Info"
-  )
-  embed.add_field(name=":name_badge: Name", value=f"{member.name}")
-  embed.add_field(name="Nickname", value=f"{member.nick}")
-  embed.add_field(name=":flower_playing_cards: Joined Discord", value=f"{c}")
-  embed.add_field(name="Joined Server", value=f"{j}")
-  embed.add_field(name=":credit_card: ID", value=f"{member.id}")
-  embed.add_field(name="Highest role", value=f"{member.top_role.mention}")
-  embed.set_footer(text=f"Requested by: {ctx.author.name}")
-  await ctx.respond(embed=embed)
-
-@client.command(description="Get the server's current boostcount")
-async def boostcount(ctx):
-    embed = discord.Embed(title = f'{ctx.guild.name}\'s Boost Count', description = f'{str(ctx.guild.premium_subscription_count)}')
-    await ctx.respond(embed = embed)
-
-@client.command(description="Get a invite link to our support server!")
-async def support(ctx):
-  await ctx.respond("Have you found an issue with FetchBot or a bug? Join our support server; https://discord.gg/uBEK23mmmK")
-
-
-@client.command(description="Subtract a number from another number!")
-async def subtract(ctx, firstnumber:int, secondnumber:int):
-  await ctx.respond(f"{firstnumber}-{secondnumber} = {firstnumber-secondnumber}")
-
 @client.command(description="Pull the latest version from github and restart the bot")
 @commands.is_owner()
 async def gitpull(ctx):
