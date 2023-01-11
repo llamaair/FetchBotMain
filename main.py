@@ -480,7 +480,7 @@ async def comic(ctx):
 @check(check_if_user_has_premium)
 async def meme(ctx):
   global lastMeme
-  memelist=["https://img.delicious.com.au/WqbvXLhs/del/2016/06/more-the-merrier-31380-2.jpg", "https://pd-beamliving-cd.beamliving.com/-/media/bu-to-ch/cat-meme-netflix-funny-1000x666.png", "https://new.boredteachers.com/wp-content/uploads/2021/04/memes.jpg", "https://i.chzbgr.com/thumb800/18939909/h4090C4E2/memes-animal-memes-funny-animal-memes-memes-funny-memes-funny-cute-cute-animals-cute-animal-memes", "https://i.chzbgr.com/thumb800/18935045/h61FAABB3/and-claimed-my-dad-as-his-person-yes-that-is-a-picture-of-his-cat-on-his-comforter-umicroducklett"]
+  memelist=["https://img.delicious.com.au/WqbvXLhs/del/2016/06/more-the-merrier-31380-2.jpg", "https://pd-beamliving-cd.beamliving.com/-/media/bu-to-ch/cat-meme-netflix-funny-1000x666.png", "https://new.boredteachers.com/wp-content/uploads/2021/04/memes.jpg", "https://i.chzbgr.com/thumb800/18939909/h4090C4E2/memes-animal-memes-funny-animal-memes-memes-funny-memes-funny-cute-cute-animals-cute-animal-memes", "https://i.chzbgr.com/thumb800/18935045/h61FAABB3/and-claimed-my-dad-as-his-person-yes-that-is-a-picture-of-his-cat-on-his-comforter-umicroducklett", "https://cdn.discordapp.com/attachments/1054423887598854165/1062785610164744222/7bf8cbf4f37461087bd8e83f8671edb1.png", "https://cdn.discordapp.com/attachments/1062778746303680574/1062786023622443088/7d7c1a38f1b09d123535945eb22cc7ac.png", "https://cdn.discordapp.com/attachments/1062778746303680574/1062786191822422046/267140c36ae0b4698fb43c28ea35ecc4.png", "https://cdn.discordapp.com/attachments/1062778746303680574/1062786299276308600/5365ad123560b8f2b2100846042adb50.png", "https://cdn.discordapp.com/attachments/1062778746303680574/1062786368251633774/05d9f72d983259c86c2420c11ab87c3c.png"]
   meme = random.choice(memelist)
   if meme==lastMeme:
     meme = random.choice(memelist)
@@ -1095,5 +1095,5 @@ client.load_extension('cogs.moderation')
 client.load_extension('cogs.fun')
 client.load_extension('cogs.tools')
 client.load_extension('cogs.automod')
-client.load_extension('cogs.levelling')
+#client.load_extension('cogs.levelling')
 client.run(TOKEN)
