@@ -58,7 +58,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
                 await message.channel.send(f"{message.author.mention} Please do not mass mention people :skull:")
             if len(message.raw_mentions) > 7:
                 await message.author.timeout_for(timedelta(minutes=15))
-            if len(message.raw_mentions) > 15:
+            if len(message.raw_mentions) > 14:
                 await message.author.ban(reason = "Mass mentioning")
 
 
