@@ -113,7 +113,7 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
         await ctx.respond(embed=embed)
 
     @discord.slash_command(description="Just a calculator")
-    async def calculate(self, ctx, operation, *nums):
+    async def calculate(self, ctx, operation, *, nums):
         if operation not in ['+', '-', '*', '/']:
             await ctx.respond('Please type a valid operation type.')
         var = f' {operation} '.join(nums)
