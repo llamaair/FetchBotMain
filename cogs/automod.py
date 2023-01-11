@@ -3,7 +3,6 @@ from discord.ext import commands
 import asyncio
 import random
 import json
-import timedelta
 
 class automod(commands.Cog): # create a class for our cog that inherits from commands.Cog
     # this class is used to create a cog, which is a module that can be added to the bot
