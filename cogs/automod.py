@@ -35,7 +35,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
         channel = str(message.channel.name)
         guild = str(message.guild.name)
         print(f'{username} : {user_message} ({channel}) ({guild})')
-        for word in message.content:
+        if banned_words in message.content:
             await message.delete()
             await message.channel.send(f"{message.author.mention}, you just used a banned word, please do not do that again :eyes:")
 
