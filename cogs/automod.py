@@ -14,7 +14,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
     async def automod(self, ctx):
         authorr = ctx.author
         with open("automodguilds.json") as f:
-            autmodguild = json.load(f)
+            automodguild = json.load(f)
 
         if ctx.guild.id not in automodguild:
             automodguild.append(ctx.guild.id)
