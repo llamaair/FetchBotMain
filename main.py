@@ -37,6 +37,7 @@ async def on_ready():
 
     
 
+
 @client.event
 async def on_command_error(ctx, error):
   if isinstance(error, commands.MissingPermissions):

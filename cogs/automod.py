@@ -35,9 +35,8 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
         channel = str(message.channel.name)
         guild = str(message.guild.name)
         print(f'{username} : {user_message} ({channel}) ({guild})')
-        if banned_words in message.content:
-            await message.delete()
-            await message.channel.send(f"{message.author.mention}, you just used a banned word, please do not do that again :eyes:")
+        if 'foo' in message.content.lower():
+            await message.channel.send(f"{message.author.mention} that is a banned word :eyes:")
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(automod(bot)) # add the cog to the bot
