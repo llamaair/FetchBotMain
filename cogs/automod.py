@@ -40,12 +40,16 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
         if message.guild.id in automodguild:
 
             if 'foo' in message.content.lower():
+                await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
             if 'nigger' in message.content.lower():
+                await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
             if 'bitch' in message.content.lower():
+                await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
             if 'fucker' in message.content.lower():
+                await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
 
 def setup(bot): # this is called by Pycord to setup the cog
