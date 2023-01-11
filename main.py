@@ -53,6 +53,11 @@ def check_if_user_has_premium(ctx):
 
   return True
 
+@client.command(description="Kill the bot")
+@commands.is_owner()
+async def kill(ctx):
+  await ctx.respond("Bot process killed :skull:")
+  quit()
 
 @client.command(aliases=['h'], description="Get a list of commands!")
 async def help(ctx):
