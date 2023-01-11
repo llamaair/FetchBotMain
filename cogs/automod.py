@@ -29,6 +29,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        banned_words = ["bitch"]
         username = str(message.author)
         user_message = str(message.content)
         channel = str(message.channel.name)
