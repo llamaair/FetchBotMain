@@ -23,6 +23,8 @@ class fun(commands.Cog): # create a class for our cog that inherits from command
 
             
 
+            
+
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(fun(bot)) # add the cog to the bot
