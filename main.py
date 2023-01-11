@@ -233,15 +233,6 @@ def convert(time):
     return val * time_dict[unit]
 
 
-@client.command(aliases=['purge', 'delete'], description="Delete messages")
-@commands.has_permissions(manage_messages=True)
-async def clear(ctx, amount: int):
-    await ctx.respond("Clearing messages")
-    time.sleep(1)
-    amount += 1
-    await ctx.channel.purge(limit=amount)
-
-
 
 
 @client.command(aliases=["mc", "members"],
@@ -526,9 +517,6 @@ async def gitpull(ctx):
 async def premium(ctx):
   await ctx.respond("FetchBot Premium gives you access to a whole lot of new commands, aswell as more features! You can find the list with premium commands at the command; /help")
 
-@client.command(description="Ping!")
-async def pong(ctx):
-  await ctx.respond('Pong! {0}'.format(round(client.latency, 1)))
 
 @client.command(description="See if you have premium!")
 @check(check_if_user_has_premium)

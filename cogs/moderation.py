@@ -52,6 +52,14 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
       await ctx.respond("Channel is now being deleted",ephemeral=True)
       await asyncio.sleep(2)
       await ctx.channel.delete()
+
+    @discord.slash_command(description="Delete messages")
+    @commands.has_permissions(manage_messages=True)
+    async def clear(self, ctx, amount: int):
+        await ctx.respond("Clearing messages")
+        time.sleep(1)
+        amount += 1
+        await ctx.channel.purge(limit=amount)
         
 
 def setup(bot): # this is called by Pycord to setup the cog
