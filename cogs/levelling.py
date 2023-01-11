@@ -34,7 +34,7 @@ class levelling(commands.Cog): # create a class for our cog that inherits from c
                 users[f'{message.author.id}']['experience'] = 0
                 users[f'{message.author.id}']['level'] = 1
             
-            users[f'{levels.id}']['experience'] += 5
+            users[f'{message.author.id}']['experience'] += 5
             with open('levellling.json', 'r') as g:
                 levels = json.load(g)
             experience = users[f'{message.authoe.id}']['experience']
