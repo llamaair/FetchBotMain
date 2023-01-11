@@ -24,7 +24,7 @@ class levelling(commands.Cog): # create a class for our cog that inherits from c
             json.dump(users, f)
 
     @commands.Cog.listener()
-    async def on_message(message):
+    async def on_message(self, message):
         if message.author.bot == False:
             with open('users.json', 'r') as f:
                 users = json.load(f)
