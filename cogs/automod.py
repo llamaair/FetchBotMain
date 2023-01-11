@@ -62,7 +62,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
                 violations = self.too_many_violations.get_bucket(message)
                 check = violations.update_rate_limit()
                 if check:
-                    await message.author.timeout(timedelta(minutes = 10), reason = "Spamming")
+                    await message.author.timeout(asyncio(minutes = 10), reason = "Spamming")
 
 
 def setup(bot): # this is called by Pycord to setup the cog
