@@ -1095,4 +1095,5 @@ def setup(client):
 client.load_extension('cogs.moderation')
 client.load_extension('cogs.fun')
 client.load_extension('cogs.tools')
+client.load_extension('cogs.automod')
 client.run(TOKEN)
