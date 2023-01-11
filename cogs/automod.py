@@ -59,6 +59,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
             if len(message.raw_mentions) > 7:
                 await message.author.timeout_for(timedelta(minutes=15))
             if len(message.raw_mentions) > 14:
+                await message.author.send(f"You have been banned from {message.guild} for mass mentioning people by FetchBot Automod")
                 await message.author.ban(reason = "Mass mentioning")
 
 
