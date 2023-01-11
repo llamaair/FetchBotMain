@@ -423,6 +423,10 @@ async def activatepremium(ctx, code):
   with open("codes.json") as f:
     codes_list = json.load(f)
 
+  if code in codes_list:
+    await ctx.respond("This code has already been claimed :pensive:")
+    return
+
   if code not in codes_list:
     codes_list.append(code)
 
