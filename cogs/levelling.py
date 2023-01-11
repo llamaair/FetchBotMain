@@ -23,8 +23,28 @@ class levelling(commands.Cog): # create a class for our cog that inherits from c
         with open('levels.json', 'r'):
             json.dump(users, f)
 
+    @discord.slash_command(description="Enable and disable the levelling system")
+    async def activelevel(self, ctx):
+        with open("levelguilds.json") as f:
+            automodguild = json.load(f)
+
+        if ctx.guild.id not in automodguild:
+            automodguild.append(ctx.guild.id)
+            await ctx.respond("Enabled levels, saving settings...")
+        elif ctx.guild.id in automodguild:
+            automodguild.remove(ctx.guild.id)
+            await ctx.respond("Disabled levels, saving settings...")
+
+        with open("levelguilds.json", "w+") as f:
+            json.dump(automodguild, f)
+
+        await ctx.respond("Settings saved!")
+
     @commands.Cog.listener()
     async def on_message(self, message):
+        with open("levelguilds.json") as f:
+            automodguild = json.load(f)
+        if message.guild.id not in automodguild: return
         if message.author.bot == False:
             with open('levels.json', 'r') as f:
                 users = json.load(f)
