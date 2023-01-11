@@ -413,6 +413,32 @@ async def addpremium(ctx, user : discord.Member):
 
   await ctx.respond(f"{user.mention} has been added to premium!")
 
+@client.command(description="Activate a premium subscription with a code")
+async def activatepremium(ctx, code):
+  authorr = ctx.author
+  coodes = ["a8fsadhfg539j", "b8rsavhfg5gh5"]
+  if code not in coodes:
+    await ctx.respond("Code invalid", ephemeral = True)
+    return
+  with open("codes.json") as f:
+    codes_list = json.load(f)
+
+  if code not in codes_list:
+    codes_list.append(code)
+
+  with open("codes.json", "w+") as f:
+    json.dump(codes_list, f)
+
+  with open("premium_users.json") as f:
+    premium_users_list = json.load(f)
+  
+  premium_users_list.append(authorr.id)
+
+  with open("premium_users.json", "w+") as f:
+    json.dump(premium_users_list, f)
+
+  await ctx.respond("Congrats! You have now activated your premium subscription!")
+
 @client.command(description="Remove Premium from a member")
 @commands.is_owner()
 async def removepremium(ctx, user : discord.Member):
