@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import random
+import json
 
 class serverlogs(commands.Cog): # create a class for our cog that inherits from commands.Cog
     # this class is used to create a cog, which is a module that can be added to the bot
@@ -9,9 +10,30 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
     def __init__(self, bot): # this is a special method that is called when the cog is loaded
         self.bot = bot
 
+    @discord.slash_command(description="Enable or disable serverlogs")
+    @commands.has_permissions(administrator = True)
+    async def serverlogs(self, ctx):
+        with open("loguilds.json") as f:
+            automodguild = json.load(f)
+
+        if ctx.guild.id not in automodguild:
+            automodguild.append(ctx.guild.id)
+            await ctx.respond("Enabled automod, saving settings...")
+        elif ctx.guild.id in automodguild:
+            automodguild.remove(ctx.guild.id)
+            await ctx.respond("Disabled automod, saving settings...")
+
+        with open("loguilds.json", "w+") as f:
+            json.dump(automodguild, f)
+
+        await ctx.respond("Settings saved!")
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
+        with open("loguilds.json") as f:
+            automodguild = json.load(f)
+        if message.guild.id not in automodguild:
+            return
         guild=message.author.guild
         author = message.author
         ch = message.channel
@@ -27,6 +49,28 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
                 embed.add_field(name=f"Message", value=msg_del, inline=False)
                 embed.add_field(name=f"Message Author", value=aut_name, inline=False)
                 embed.add_field(name=f"Channel", value=ch_name, inline=False)
+                await channel.send(embed=embed)
+
+    @commands.Cog.listener()
+    async def on_message_edit(self, before, after):
+        blue = discord.Colour.blue()
+        guild = before.author.guild
+        embed=discord.Embed(title=f"{before.author} edited a message", color=blue)
+        embed.add_field(name= before.content ,value="This is the message before any edit", inline = True)
+        embed.add_field(name = after.content, value="This is the message after the edit", inline = True)
+        for channel in guild.channels:
+            if str(channel.name) == "server-logs":
+                await channel.send(embed=embed)
+
+    @commands.Cog.listener()
+    async def on_member_ban(self, guild, user):
+        member = user
+        gold = discord.Color.dark_gold()
+        for channel in guild.channels:
+            if str(channel.name) == "server-logs":
+                embed = discord.Embed(color=gold)
+                embed.set_author(name=member.name)
+                embed.add_field(name="User banned", value=f"{member.name} has been banned")
                 await channel.send(embed=embed)
 
 
