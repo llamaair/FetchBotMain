@@ -414,7 +414,7 @@ async def reminder(ctx, time, *, reminder):
     elif seconds > 7776000:
         embed.add_field(name='Warning', value='You have specified a too long duration!\nMaximum duration is 90 days.')
     else:
-        await ctx.respond(f"You have successfully set a reminder for {reminder} in {counter}.")
+        await ctx.respond(f"You have successfully set a reminder for {reminder} in {counter}.", ephemeral = True)
         await asyncio.sleep(seconds)
         await ctx.send(f"Hello {ctx.author.mention}, you asked me to remind you about {reminder} {counter} ago.")
         return
