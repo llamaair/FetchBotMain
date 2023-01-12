@@ -34,7 +34,7 @@ class welcome(commands.Cog): # create a class for our cog that inherits from com
             automodguild = json.load(f)
         if member.guild.id in automodguild:
             if member.guild.system_channel: # If it is not None
-                await member.guild.system_channel.send(f'Welcome to {member.guild.name}, {member.mention}. We hope you will enjoy you time here :tada: :tada:')
+                await member.guild.system_channel.send(f'Welcome to {member.guild.name}, {member.mention}. We hope you will enjoy your time here :tada: :tada:')
 
 
 def setup(bot): # this is called by Pycord to setup the cog
