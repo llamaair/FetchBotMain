@@ -392,7 +392,7 @@ async def reminder(ctx, time, *, reminder):
     print(reminder)
     user = ctx.author
     embed = discord.Embed(color=0x55a7f7)
-    embed.set_footer(text="If you have any questions, suggestions or bug reports, please join our support Discord Server: link hidden")
+    embed.set_footer(text="If you have any questions, suggestions or bug reports, please join our support Discord Server: https://discord.gg/6BHkmhezU4")
     seconds = 0
     if time.lower().endswith("d"):
         seconds += int(time[:-1]) * 60 * 60 * 24
