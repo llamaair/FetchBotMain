@@ -391,7 +391,7 @@ async def reminder(ctx, time, *, reminder):
     print(reminder)
     user = ctx.author
     embed = discord.Embed(color=0x55a7f7)
-    embed.set_footer(text="If you have any questions, suggestions or bug reports, please join our support Discord Server: link hidden", icon_url=f"{client.user.avatar_url}")
+    embed.set_footer(text="If you have any questions, suggestions or bug reports, please join our support Discord Server: link hidden")
     seconds = 0
     if reminder is None:
         embed.add_field(name='Warning', value='Please specify what do you want me to remind you about.') # Error message
