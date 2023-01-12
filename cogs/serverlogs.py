@@ -18,10 +18,10 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
 
         if ctx.guild.id not in automodguild:
             automodguild.append(ctx.guild.id)
-            await ctx.respond("Enabled automod, saving settings...")
+            await ctx.respond("Enabled serverlogs, saving settings...")
         elif ctx.guild.id in automodguild:
             automodguild.remove(ctx.guild.id)
-            await ctx.respond("Disabled automod, saving settings...")
+            await ctx.respond("Disabled serverlogs, saving settings...")
 
         with open("loguilds.json", "w+") as f:
             json.dump(automodguild, f)
@@ -53,6 +53,10 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
+        with open("loguilds.json") as f:
+            automodguild = json.load(f)
+        if before.guild.id not in automodguild:
+            return
         blue = discord.Colour.blue()
         guild = before.author.guild
         embed=discord.Embed(title=f"{before.author} edited a message", color=blue)
@@ -64,6 +68,10 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
 
     @commands.Cog.listener()
     async def on_member_ban(self, guild, user):
+        with open("loguilds.json") as f:
+            automodguild = json.load(f)
+        if guild.id not in automodguild:
+            return
         member = user
         gold = discord.Color.dark_gold()
         for channel in guild.channels:
