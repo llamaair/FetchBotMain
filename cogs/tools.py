@@ -44,7 +44,7 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
     @commands.has_permissions(administrator=True)
     async def servers(self, ctx):
         embed = discord.Embed()
-        for guild in self.guilds:
+        for guild in ctx.guilds:
             embed.add_field(name=":crown:", value=guild)
         await ctx.respond(embed = embed)
 
