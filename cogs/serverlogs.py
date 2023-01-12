@@ -100,14 +100,14 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
     async def on_member_unban(guild, user):
         with open("loguilds.json") as f:
             automodguild = json.load(f)
-        if guild.id not in automodguild:
+        if user.guild.id not in automodguild:
             return
         gold = discord.Color.dark_gold()
         for channel in guild.channels:
             if str(channel.name) == "server-logs":
                 embed = discord.Embed(color=gold)
-                embed.set_author(name=member.name)
-                embed.add_field(name="User unbanned", value=f"{member.name} has been unbanned")
+                embed.set_author(name=user.name)
+                embed.add_field(name="User unbanned", value=f"{user.name} has been unbanned")
                 await channel.send(embed=embed)
 
 
