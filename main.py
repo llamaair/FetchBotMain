@@ -385,7 +385,7 @@ async def echo(ctx, *, message):
     await ctx.send(message)
     return
 
-@client.command(case_insensitive = True, aliases = ["remind", "remindme", "remind_me"])
+@client.command(description="Set a reminder")
 async def reminder(ctx, time, *, reminder):
     print(time)
     print(reminder)
@@ -418,9 +418,9 @@ async def reminder(ctx, time, *, reminder):
     else:
         await ctx.respond(f"Alright, I will remind you about {reminder} in {counter}.")
         await asyncio.sleep(seconds)
-        await ctx.send(f"Hi, you asked me to remind you about {reminder} {counter} ago.")
+        await ctx.send(f"Hi {ctx.author}, you asked me to remind you about {reminder} {counter} ago.")
         return
-    await ctx.send(embed=embed)
+    await ctx.respond(embed=embed)
 
 @client.command(description="Print info about the servers fetchbot is used in")
 async def servers(ctx):
