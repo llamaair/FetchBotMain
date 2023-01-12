@@ -808,7 +808,7 @@ async def daily(ctx):
     json.dump(users, f)
 
 @client.command(description="Do a bank robbery!")
-@commands.cooldown(1, 3000, commands.BucketType.user)
+@commands.cooldown(1, 2000, commands.BucketType.user)
 async def rob(ctx):
   await open_account(ctx.author)
 

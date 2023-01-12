@@ -63,7 +63,7 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
         await ctx.respond(embed = embed)
 
     @discord.slash_command(description="Get a invite link to our discord server!")
-    async def discordserver(self, ctx):
+    async def support(self, ctx):
         await ctx.respond("Have you found an issue with FetchBot or a bug, or just want to chat with other people using FetchBot? Join our discord server; https://discord.gg/uBEK23mmmK")
 
 
