@@ -393,8 +393,6 @@ async def reminder(ctx, time, *, reminder):
     embed = discord.Embed(color=0x55a7f7)
     embed.set_footer(text="If you have any questions, suggestions or bug reports, please join our support Discord Server: link hidden")
     seconds = 0
-    if reminder is None:
-        embed.add_field(name='Warning', value='Please specify what do you want me to remind you about.') # Error message
     if time.lower().endswith("d"):
         seconds += int(time[:-1]) * 60 * 60 * 24
         counter = f"{seconds // 60 // 60 // 24} days"
@@ -416,9 +414,9 @@ async def reminder(ctx, time, *, reminder):
     elif seconds > 7776000:
         embed.add_field(name='Warning', value='You have specified a too long duration!\nMaximum duration is 90 days.')
     else:
-        await ctx.respond(f"Alright, I will remind you about {reminder} in {counter}.")
+        await ctx.respond(f"You have successfully set a reminder for {reminder} in {counter}.")
         await asyncio.sleep(seconds)
-        await ctx.send(f"Hi {ctx.author}, you asked me to remind you about {reminder} {counter} ago.")
+        await ctx.send(f"Hello {ctx.author.mention}, you asked me to remind you about {reminder} {counter} ago.")
         return
     await ctx.respond(embed=embed)
 
