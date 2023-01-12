@@ -151,6 +151,7 @@ async def helpmember(ctx,member:discord.Member):
 
 @client.command(aliases=['Gw'], description="Host a giveaway")
 @commands.has_permissions(administrator=True)
+@check(check_if_user_has_premium)
 async def giveaway(ctx):
     await ctx.respond(
         "Hello . Please answer to these questions within 15 Seconds to Start the giveaway."
@@ -811,7 +812,7 @@ async def daily(ctx):
     json.dump(users, f)
 
 @client.command(description="Do a bank robbery!")
-@commands.cooldown(1, 3000, commands.BucketType.user)
+@commands.cooldown(1, 2000, commands.BucketType.user)
 async def rob(ctx):
   await open_account(ctx.author)
 
@@ -823,7 +824,7 @@ async def rob(ctx):
 
   wallet_amt = users[str(user.id)]["Wallet"]
 
-  decider = random.randint(0,2)
+  decider = random.randint(0,1)
 
   if decider == 1:
     await ctx.respond(f"You just robbed the bank and got {earnings}!")
@@ -897,7 +898,7 @@ async def robmember(ctx,member:discord.Member):
 
   wallet_aamt = users[str(user.id)]["Wallet"]
 
-  decider = random.randint(0,2)
+  decider = random.randint(0,1)
 
   wallet_amt = users[str(mem.id)]["Wallet"]
 
@@ -1099,7 +1100,8 @@ async def leaderboard(ctx):
       else:
         index += 1
         em.set_footer(text =f"Requested By {ctx.author}")
-        await ctx.respond(embed = em)
+        
+    await ctx.respond(embed = em)
   except AttributeError:
     await ctx.respond(":x: There are not that many accounts stored in my database.")
 
@@ -1113,4 +1115,5 @@ client.load_extension('cogs.tools')
 client.load_extension('cogs.automod')
 client.load_extension('cogs.levelling')
 client.load_extension('cogs.serverlogs')
+client.load_extension('cogs.welcome')
 client.run(TOKEN)
