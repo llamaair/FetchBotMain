@@ -408,7 +408,7 @@ async def reminder(ctx, time, *, reminder):
         counter = f"{seconds} seconds"
     if seconds == 0:
         embed.add_field(name='Warning',
-                        value='Please specify a proper duration, send `reminder_help` for more information.')
+                        value='Please specify a proper duration')
     elif seconds < 300:
         embed.add_field(name='Warning',
                         value='You have specified a too short duration!\nMinimum duration is 5 minutes.')
