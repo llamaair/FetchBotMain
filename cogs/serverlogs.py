@@ -82,7 +82,7 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
                 await channel.send(embed=embed)
 
     @commands.Cog.listener()
-    async def on_guild_role_create(role):
+    async def on_guild_role_create(self, role):
         with open("loguilds.json") as f:
             automodguild = json.load(f)
         if role.guild.id not in automodguild:
@@ -97,7 +97,7 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
     
     
     @commands.Cog.listener()
-    async def on_member_unban(guild, user):
+    async def on_member_unban(self, guild, user):
         with open("loguilds.json") as f:
             automodguild = json.load(f)
         if user.guild.id not in automodguild:
