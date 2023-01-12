@@ -70,7 +70,7 @@ async def help(ctx):
     helpem.add_field(
         name=":red_circle: Main commands :red_circle:",
         value=
-        "**/randnum\n/help\n/kick\n/ban\n/clear\n/dog\n/cat\n/fatcat\n/fatdog\n/giveaway\n/fact\n/manga\n/anime\n/membercount\n/invite\n/creroll\n/champion\n/alimit\n/flush\n/flushnick\n/future\n/reroll\n/rps\n/react\n/servers\n/info\n/me\n/ask\n/threat\n/warn\n/stupid\n/smart\n/delchannel\n/uptime\n/abuse\n/challenge\n/whois\n/avatar\n/helpmember**"
+        "**/randnum\n/help\n/kick\n/ban\n/clear\n/premium\n/dog\n/cat\n/fatcat\n/fatdog\n/giveaway\n/fact\n/manga\n/anime\n/membercount\n/activatepremium\n/invite\n/creroll\n/champion\n/alimit\n/flush\n/flushnick\n/future\n/reroll\n/rps\n/react\n/servers\n/info\n/me\n/ask\n/threat\n/warn\n/stupid\n/smart\n/delchannel\n/uptime\n/abuse\n/challenge\n/whois\n/avatar\n/helpmember**"
     )
 
     helpem.add_field(
@@ -93,13 +93,19 @@ async def help(ctx):
 "**/balance\n/memberbalance\n/inventory\n/memberinventory\n/beg\n/daily\n/shop\n/buy\n/rob\n/pay\n/deposit\n/withdraw\n/set**"
     )
 
+    helpem.add_field(
+      name=":white_check_mark: Full command list :white_check_mark:", value=
+
+"For a full list of commands, please visit https://marcusolsson123.wixsite.com/fetchbot/commands"
+    )
+
 
     helpem.set_footer(text=f"Requested By {ctx.author.name}",
                       icon_url=ctx.author.avatar.url)
 
     helpem.set_author(name=client.user.name, icon_url=client.user.avatar.url)
 
-    return await ctx.respond(embed=helpem)
+    return await ctx.author.send(embed=helpem)
 
 @client.command(description="Send help to a member!")
 @commands.has_permissions(manage_guild=True)
