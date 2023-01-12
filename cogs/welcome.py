@@ -32,7 +32,7 @@ class welcome(commands.Cog): # create a class for our cog that inherits from com
     async def on_member_join(self, member):
         with open("welcoming.json") as f:
             automodguild = json.load(f)
-        if message.guild.id in automodguild:
+        if member.guild.id in automodguild:
             if member.guild.system_channel: # If it is not None
                 await member.guild.system_channel.send(f'Welcome to {member.guild.name}, {member.mention}. We hope you will enjoy you time here :tada: :tada:')
 
