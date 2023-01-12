@@ -389,7 +389,7 @@ async def echo(ctx, *, message):
 async def reminder(ctx, time, *, reminder):
     print(time)
     print(reminder)
-    user = ctx.message.author
+    user = ctx.author
     embed = discord.Embed(color=0x55a7f7, timestamp=datetime.utcnow())
     embed.set_footer(text="If you have any questions, suggestions or bug reports, please join our support Discord Server: link hidden", icon_url=f"{client.user.avatar_url}")
     seconds = 0
