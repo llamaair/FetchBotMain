@@ -12,11 +12,9 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-        ctx = self.get_context
         guild=message.author.guild
         author = message.author
         ch = message.channel
-        cli = self.user
         content = message.content
         orange = discord.Color.dark_orange()
         for channel in guild.channels:
