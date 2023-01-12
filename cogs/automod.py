@@ -39,7 +39,6 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
         user_message = str(message.content)
         channel = str(message.channel.name)
         guild = str(message.guild.name)
-        print(f'{username} : {user_message} ({channel}) ({guild})')
         with open("automodguilds.json") as f:
             automodguild = json.load(f)
         if message.guild.id in automodguild:
