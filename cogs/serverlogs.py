@@ -78,7 +78,7 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
             if str(channel.name) == "server-logs":
                 embed = discord.Embed(color=gold)
                 embed.set_author(name=member.name)
-                embed.add_field(name="User banned", value=f"{member.name} has been banned")
+                embed.add_field(name="User banned", value=f"{member} has been banned")
                 await channel.send(embed=embed)
 
     @commands.Cog.listener()
@@ -107,7 +107,7 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
             if str(channel.name) == "server-logs":
                 embed = discord.Embed(color=gold)
                 embed.set_author(name=user.name)
-                embed.add_field(name="User unbanned", value=f"{user.name} has been unbanned")
+                embed.add_field(name="User unbanned", value=f"{user} has been unbanned")
                 await channel.send(embed=embed)
 
 
