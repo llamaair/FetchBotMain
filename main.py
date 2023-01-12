@@ -148,6 +148,7 @@ async def helpmember(ctx,member:discord.Member):
 
 @client.command(aliases=['Gw'], description="Host a giveaway")
 @commands.has_permissions(administrator=True)
+@check(check_if_user_has_premium)
 async def giveaway(ctx):
     await ctx.respond(
         "Hello . Please answer to these questions within 15 Seconds to Start the giveaway."
