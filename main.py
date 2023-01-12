@@ -820,7 +820,7 @@ async def rob(ctx):
 
   wallet_amt = users[str(user.id)]["Wallet"]
 
-  decider = random.randint(0,2)
+  decider = random.randint(0,1)
 
   if decider == 1:
     await ctx.respond(f"You just robbed the bank and got {earnings}!")
@@ -894,7 +894,7 @@ async def robmember(ctx,member:discord.Member):
 
   wallet_aamt = users[str(user.id)]["Wallet"]
 
-  decider = random.randint(0,2)
+  decider = random.randint(0,1)
 
   wallet_amt = users[str(mem.id)]["Wallet"]
 
