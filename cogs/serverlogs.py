@@ -100,7 +100,7 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
     async def on_member_unban(self, guild, user):
         with open("loguilds.json") as f:
             automodguild = json.load(f)
-        if user.guild.id not in automodguild:
+        if guild.id not in automodguild:
             return
         gold = discord.Color.dark_gold()
         for channel in guild.channels:
