@@ -386,6 +386,7 @@ async def echo(ctx, *, message):
     return
 
 @client.command(description="Set a reminder")
+@check(check_if_user_has_premium)
 async def reminder(ctx, time, *, reminder):
     print(time)
     print(reminder)
