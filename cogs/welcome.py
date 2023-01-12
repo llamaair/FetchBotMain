@@ -29,7 +29,7 @@ class welcome(commands.Cog): # create a class for our cog that inherits from com
         await ctx.respond("Settings saved!")
     
     @commands.Cog.listener()
-    async def on_member_join(member):
+    async def on_member_join(self, member):
         with open("welcoming.json") as f:
             automodguild = json.load(f)
         if message.guild.id in automodguild:
