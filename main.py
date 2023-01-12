@@ -12,6 +12,14 @@ from discord.ext.commands import check
 from dotenv import load_dotenv
 import botdash
 
+botda = botdash.Client(
+  '<O4MABIVhZfNmK0Gb1qLahpy2YLUY20xfdlP0XcZJNzZik63fcu2DXr9Irm8YnLjJ>',
+  return_value=True,
+)
+
+object = botda.get("<GUILDID>", "<DATA-VALUE>")
+print(object)
+
 #---------------------------#
 #NAME: FetchBot
 #Status: Working
