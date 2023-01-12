@@ -386,11 +386,10 @@ async def echo(ctx, *, message):
     return
 
 @client.command(description="Print info about the servers fetchbot is used in")
-@commands.has_permissions(administrator=True)
 async def servers(ctx):
   embed = discord.Embed()
-  for guild in client.guilds:
-    embed.add_field(name=":crown:", value=guild)
+  dd = len(client.guilds)
+  embed.add_field(name=":crown: Server Amount", value=dd)
   await ctx.respond(embed = embed)
 
 @client.command(description="Send a message to a user")
