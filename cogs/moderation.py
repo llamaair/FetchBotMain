@@ -45,7 +45,7 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
     @commands.has_permissions(moderate_members=True)
     async def warn(self, ctx, member: discord.Member, *, reason):
         await ctx.respond("Warning sent",ephemeral=True)
-        await ctx.send(f"{member}, you have been warned by {ctx.author.mention} for {reason}")
+        await ctx.send(f"{member.mention}, you have been warned by {ctx.author.mention} for {reason}")
 
     @discord.slash_command(description="Delete the channel you use the command in")
     @commands.has_permissions(manage_channels=True)

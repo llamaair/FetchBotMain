@@ -62,9 +62,9 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
         embed = discord.Embed(title = f'{ctx.guild.name}\'s Boost Count', description = f'{str(ctx.guild.premium_subscription_count)}')
         await ctx.respond(embed = embed)
 
-    @discord.slash_command(description="Get a invite link to our support server!")
-    async def support(self, ctx):
-        await ctx.respond("Have you found an issue with FetchBot or a bug? Join our support server; https://discord.gg/uBEK23mmmK")
+    @discord.slash_command(description="Get a invite link to our discord server!")
+    async def discordserver(self, ctx):
+        await ctx.respond("Have you found an issue with FetchBot or a bug, or just want to chat with other people using FetchBot? Join our discord server; https://discord.gg/uBEK23mmmK")
 
 
     @discord.slash_command(description="Subtract a number from another number!")
