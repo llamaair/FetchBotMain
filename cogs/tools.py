@@ -40,13 +40,6 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
         await ctx.respond("Thanks sent", ephemeral = True)
         await member.send(f"You just recived a thank you from {ctx.author}")
 
-    @discord.slash_command(description="Print info about the servers fetchbot is used in")
-    @commands.has_permissions(administrator=True)
-    async def servers(self, ctx):
-        embed = discord.Embed()
-        for guild in ctx.guilds:
-            embed.add_field(name=":crown:", value=guild)
-        await ctx.respond(embed = embed)
 
     @discord.slash_command(description="Do a action that fetchbot will print with your name")
     async def me(self, ctx, *, message):
