@@ -10,6 +10,7 @@ import os
 import json
 from discord.ext.commands import check
 from dotenv import load_dotenv
+import botdash
 
 #---------------------------#
 #NAME: FetchBot
@@ -25,6 +26,8 @@ client = discord.Bot(intents=intents, help_command=None)
 
 global lastMeme
 lastMeme = 0
+
+
 
 #Defining startup
 @client.event
