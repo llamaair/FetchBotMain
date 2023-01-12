@@ -81,6 +81,35 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
                 embed.add_field(name="User banned", value=f"{member.name} has been banned")
                 await channel.send(embed=embed)
 
+    @commands.Cog.listener()
+    async def on_guild_role_create(role):
+        with open("loguilds.json") as f:
+            automodguild = json.load(f)
+        if role.guild.id not in automodguild:
+            return
+        guild = role.guild
+        gold = discord.Color.dark_gold()
+        for channel in guild.channels:
+            if str(channel.name) == "server-logs":
+                embed = discord.Embed(color=gold)
+                embed.add_field(name="Role created", value=f"The role; {role} has been created")
+                await channel.send(embed=embed)
+    
+    
+    @commands.Cog.listener()
+    async def on_member_unban(guild, user):
+        with open("loguilds.json") as f:
+            automodguild = json.load(f)
+        if guild.id not in automodguild:
+            return
+        gold = discord.Color.dark_gold()
+        for channel in guild.channels:
+            if str(channel.name) == "server-logs":
+                embed = discord.Embed(color=gold)
+                embed.set_author(name=member.name)
+                embed.add_field(name="User unbanned", value=f"{member.name} has been unbanned")
+                await channel.send(embed=embed)
+
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(serverlogs(bot)) # add the cog to the bot
