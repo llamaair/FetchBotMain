@@ -106,7 +106,7 @@ async def help(ctx):
     helpem.set_author(name=client.user.name, icon_url=client.user.avatar.url)
 
     await ctx.author.send(embed=helpem)
-    return await ctx.respond("Help sent in DM to you :white_check_mark:")
+    return await ctx.respond("Help sent in DM to you :white_check_mark:", ephemeral = True)
 
 @client.command(description="Send help to a member!")
 @commands.has_permissions(manage_guild=True)
