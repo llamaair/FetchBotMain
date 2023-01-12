@@ -42,7 +42,7 @@ class serverlogs(commands.Cog): # create a class for our cog that inherits from 
         for channel in guild.channels:
             if str(channel.name) == "server-logs":
                 msg_del = str(f"{content}")
-                aut_name= str(f"{author.display_name}")
+                aut_name= str(f"{author}")
                 ch_name = str(f"{ch.name}")
                 embed = discord.Embed(color=orange)
                 embed.set_author(name="Message Deleted")
