@@ -1097,7 +1097,7 @@ async def leaderboard(ctx):
         index += 1
         em.set_footer(text =f"Requested By {ctx.author}")
         
-      await ctx.respond(embed = em)
+    await ctx.respond(embed = em)
   except AttributeError:
     await ctx.respond(":x: There are not that many accounts stored in my database.")
 
