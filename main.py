@@ -10,7 +10,7 @@ import os
 import json
 from discord.ext.commands import check
 from dotenv import load_dotenv
-import botdash
+from botdash.py import botdash
 
 botda = botdash.Client(
   '<O4MABIVhZfNmK0Gb1qLahpy2YLUY20xfdlP0XcZJNzZik63fcu2DXr9Irm8YnLjJ>',
