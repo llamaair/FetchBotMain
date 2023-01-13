@@ -539,7 +539,7 @@ async def invites(ctx, member: discord.Member=None):
   for i in await ctx.guild.invites():
     if i.inviter == user:
       total_invites += i.uses
-  await ctx.send(f"{user.name} has invited {total_invites} member{'' if total_invites == 1 else 's'}!")
+  await ctx.respond(f"{user.name} has invited {total_invites} member{'' if total_invites == 1 else 's'}!")
 
 @client.command(description="Post a meme!")
 @check(check_if_user_has_premium)
