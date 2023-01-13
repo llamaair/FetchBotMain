@@ -3,12 +3,13 @@ import asyncio
 import random
 import datetime
 import time
+import requests
+import urllib
 import string
 from discord.ext import commands
 from discord.ext import tasks
 import os
 import json
-import urlib
 from discord.ext.commands import check
 from dotenv import load_dotenv
 
