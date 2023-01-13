@@ -82,6 +82,7 @@ class tools(commands.Cog): # create a class for our cog that inherits from comma
         title=f"Server info"
         )
         embed.add_field(name=":ballot_box: Server Name", value=f"{ctx.guild}")
+        embed.add_field(name="Server members", value=f"{ctx.guild.member_count}")
         embed.add_field(name=":crown: Server Owner", value=owner)
         embed.add_field(name=":calendar: Created at", value=f"{tim}")
         embed.add_field(name="Text Channels", value=f"{txt}")
