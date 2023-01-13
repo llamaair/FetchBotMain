@@ -8,6 +8,7 @@ from discord.ext import commands
 from discord.ext import tasks
 import os
 import json
+import urlib
 from discord.ext.commands import check
 from dotenv import load_dotenv
 
@@ -56,6 +57,18 @@ def check_if_user_has_premium(ctx):
       return False
 
   return True
+
+@client.command(description="Search for a youtube video")
+@check(check_if_user_has_premium)
+async def ytsearch(ctx, *, url):
+  search = url
+  search = search.replace(" ", "+")
+
+  html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search)
+  video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+
+        
+  await ctx.respond("https://www.youtube.com/watch?v=" + video_ids[0])
 
 @client.command(description="Kill the bot")
 @commands.is_owner()
