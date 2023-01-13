@@ -531,6 +531,9 @@ async def gitpull(ctx):
 @check(check_if_user_has_premium)
 async def joke(ctx):
   jokelist = ["What do you call a couple of chimpanzees sharing an Amazon account? PRIME-mates.", "Why did the teddy bear say no to dessert? Because she was stuffed.", "What is a cats favorite dessert? A bowl full of mice-cream.", "What do you call two bananas on the floor? Slippers.", "Why was 6 afraid of 7? Because 7,8,9.", ""]
+  joke = random.choice(jokelist)
+  await ctx.respond(joke)
+
 
 @client.command(description="Get information about FetchBot Premium")
 async def premium(ctx):
