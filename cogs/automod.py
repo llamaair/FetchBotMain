@@ -34,7 +34,6 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        banned_words = ["bitch"]
         username = str(message.author)
         user_message = str(message.content)
         channel = str(message.channel.name)
@@ -43,6 +42,9 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
             automodguild = json.load(f)
         if message.guild.id in automodguild:
             if 'nigga' in message.content.lower():
+                await message.delete()
+                await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
+            if 'foo' in message.content.lower():
                 await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
             if 'motherfucker' in message.content.lower():
