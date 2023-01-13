@@ -514,7 +514,7 @@ async def gitpull(ctx):
 
 @client.command(description="Get information about FetchBot Premium")
 async def premium(ctx):
-  await ctx.respond("FetchBot Premium gives you access to a whole lot of new commands, aswell as more features! You can find the list with premium commands by using /help or going to the official FetchBot website. FetchBot premium currently costs 1$ and you can buy it here; https://marcusolsson123.wixsite.com/fetchbot/fetchbot-premium")
+  await ctx.respond("FetchBot Premium gives you access to a whole lot of new commands, aswell as more features! You can find the list with premium commands by using /help or going to the official FetchBot website. FetchBot premium currently costs 3$ and you can buy it here; http://fetchbot.org/fetchbot-premium")
 
 
 @client.command(description="See if you have premium!")
@@ -527,6 +527,19 @@ async def premiumstatus(ctx):
 async def comic(ctx):
   chosen = random.randint(1,1500)
   await ctx.respond(f"https://xkcd.com/{chosen}")
+
+@client.command()
+@check(check_if_user_has_premium)
+async def invites(ctx, member: discord.Member=None):
+  if member == None:
+    user = ctx.author
+  else:
+    user = member
+  total_invites = 0
+  for i in await ctx.guild.invites():
+    if i.inviter == user:
+      total_invites += i.uses
+  await ctx.send(f"{user.name} has invited {total_invites} member{'' if total_invites == 1 else 's'}!")
 
 @client.command(description="Post a meme!")
 @check(check_if_user_has_premium)
