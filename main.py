@@ -10,6 +10,7 @@ import os
 import json
 from discord.ext.commands import check
 from dotenv import load_dotenv
+import praw
 
 
 #---------------------------#
@@ -62,6 +63,19 @@ def check_if_user_has_premium(ctx):
 async def kill(ctx):
   await ctx.respond("Bot process killed :skull:")
   quit()
+
+reddit = praw.Reddit(client_id='JDOtdjvtMDMJFTHSwULSGg',
+                     client_secret='PNwCawu5WoJ6Px-P_02wNSpiC1ZDEg',
+                     user_agent='FetchBot 1.0 by /u/llamaair')
+
+@client.command()
+async def redmeme():
+    memes_submissions = reddit.subreddit('memes').hot()
+    post_to_pick = random.randint(1, 10)
+    for i in range(0, post_to_pick):
+        submission = next(x for x in memes_submissions if not x.stickied)
+
+    await client.respond(submission.url)
 
 @client.command(aliases=['h'], description="Get a list of commands!")
 async def help(ctx):
@@ -528,7 +542,7 @@ async def comic(ctx):
   chosen = random.randint(1,1500)
   await ctx.respond(f"https://xkcd.com/{chosen}")
 
-@client.command()
+@client.command(description="See how many users someone have invited to a server")
 @check(check_if_user_has_premium)
 async def invites(ctx, member: discord.Member=None):
   if member == None:
