@@ -532,7 +532,7 @@ async def gitpull(ctx):
 async def premium(ctx):
   await ctx.respond("FetchBot Premium gives you access to a whole lot of new commands, aswell as more features! You can find the list with premium commands by using /help or going to the official FetchBot website. FetchBot premium currently costs 3$ and you can buy it here; http://fetchbot.org/fetchbot-premium")
 
-@client.command()
+@client.command(description="Get a link to a random game")
 @check(check_if_user_has_premium)
 async def randgame(ctx):
   gamelist = ["https://snake.io/", "https://krunker.io/"]
