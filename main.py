@@ -6,7 +6,7 @@ import time
 import requests
 import urllib
 import string
-import youtube_dl
+import re
 from discord.ext import commands
 from discord.ext import tasks
 import os
