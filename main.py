@@ -535,7 +535,7 @@ async def premium(ctx):
 @client.command(description="Get a link to a random game")
 @check(check_if_user_has_premium)
 async def randgame(ctx):
-  gamelist = ["https://snake.io/", "https://krunker.io/"]
+  gamelist = ["https://snake.io/", "https://krunker.io/", "https://powerline.io/", "NoBrakes.io"]
   game = random.choice(gamelist)
   await ctx.respond(f"Your random game: {game}")
 
