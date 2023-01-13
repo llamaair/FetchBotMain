@@ -63,10 +63,6 @@ async def kill(ctx):
   await ctx.respond("Bot process killed :skull:")
   quit()
 
-reddit = praw.Reddit(client_id='JDOtdjvtMDMJFTHSwULSGg',
-                     client_secret='PNwCawu5WoJ6Px-P_02wNSpiC1ZDEg',
-                     user_agent='FetchBot 1.0 by /u/llamaair')
-
 
 @client.command(aliases=['h'], description="Get a list of commands!")
 async def help(ctx):
