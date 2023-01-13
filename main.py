@@ -62,7 +62,7 @@ def check_if_user_has_premium(ctx):
 
 @client.command(description="Search for a youtube video")
 @check(check_if_user_has_premium)
-async def ytsearch(ctx, *, url):
+async def ytsearch(ctx, *, search):
   search = url
   search = search.replace(" ", "+")
 
