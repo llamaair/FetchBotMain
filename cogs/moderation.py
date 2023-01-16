@@ -68,6 +68,7 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
     async def timeout(self, ctx, member : discord.Member, minutes:int):
         duration = timedelta(minutes = minutes)
         await member.timeout_for(duration)
+        await ctx.respond(f"Successfully timed out {member} for {minutes} minutes", ephemeral = True)
         
 
 def setup(bot): # this is called by Pycord to setup the cog
