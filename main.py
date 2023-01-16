@@ -598,7 +598,7 @@ async def announce(ctx,announcement):
 
 @client.command(description="Get a link to the FetchBot website")
 async def website(ctx):
-  await ctx.respond("https://marcusolsson123.wixsite.com/fetchbot")
+  await ctx.respond("http://fetchbot.org")
 
 @client.command(description="Lock a channel!")
 @commands.has_permissions(manage_channels=True)
