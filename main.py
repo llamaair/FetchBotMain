@@ -553,11 +553,6 @@ async def randgame(ctx):
   game = random.choice(gamelist)
   await ctx.respond(f"Your random game: {game}")
 
-@client.command(description="See if you have premium!")
-@check(check_if_user_has_premium)
-async def premiumstatus(ctx):
-  await ctx.respond("You are a premium user!")
-
 @client.command(description="Get a comic!")
 @check(check_if_user_has_premium)
 async def comic(ctx):
