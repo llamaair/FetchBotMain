@@ -65,8 +65,9 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
 
     @discord.slash_command(description="Time another member out")
     @commands.has_permissions(moderate_members = True)
-    async def timeout(self, ctx, member : discord.Member, time):
-        await member.timeout_for(timedelta(minutes=time))
+    async def timeout(self, ctx, member : discord.Member, minutes):
+        duration = timedelta(minutes = minutes)
+        await member.timeout_for(duration)
         
 
 def setup(bot): # this is called by Pycord to setup the cog
