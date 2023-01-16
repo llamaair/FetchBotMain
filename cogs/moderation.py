@@ -69,6 +69,12 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
         duration = timedelta(minutes = minutes)
         await member.timeout_for(duration)
         await ctx.respond(f"Successfully timed out {member} for {minutes} minutes", ephemeral = True)
+
+    @discord.slash_command(description="Unmute a member")
+    @commands.has_permissions(moderate_members = True)
+    async def unmute(self, ctx, member: discord.Member):
+        await member.remove_timeout()
+        await ctx.respond(f"Removed timeout from {member}", ephemeral = True)
         
 
 def setup(bot): # this is called by Pycord to setup the cog
