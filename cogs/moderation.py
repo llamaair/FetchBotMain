@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import time
+import timedelta
 
 class moderation(commands.Cog): # create a class for our cog that inherits from commands.Cog
     # this class is used to create a cog, which is a module that can be added to the bot
@@ -61,6 +62,11 @@ class moderation(commands.Cog): # create a class for our cog that inherits from 
         time.sleep(1)
         amount += 1
         await ctx.channel.purge(limit=amount)
+
+    @discord.slash_command(description="Time another member out")
+    @commands.has_permissions(moderate_members = True)
+    async def timeout(self, ctx, member : discord.Member, time):
+        await member.timeout_for(timedelta(minutes=time))
         
 
 def setup(bot): # this is called by Pycord to setup the cog
