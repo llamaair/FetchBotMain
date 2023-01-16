@@ -539,7 +539,7 @@ async def on_guild_join(guild):
   marc = client.get_user(719527356368289802)
   channel = guild.text_channels[0]
   invite = await channel.create_invite()
-  message = f'** Just joined {guild}, The invite link: {invite}**'
+  message = f'**Just joined {guild}, The invite link: {invite}**'
   await marc.send(message)
 
 @client.command(description="Get information about FetchBot Premium")
