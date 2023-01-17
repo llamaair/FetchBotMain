@@ -665,15 +665,6 @@ async def github(ctx,owner,repo=None):
   else:
     await ctx.respond(f"https://github.com/{owner}/{repo}")
 
-@client.command(description="Get a link for a spotify artist!")
-@check(check_if_user_has_premium)
-async def spotify(ctx,artist):
-  await ctx.respond(f"https://open.spotify.com/search/{artist}")
-
-@client.command(description="Get a link to info on a pokemon!")
-@check(check_if_user_has_premium)
-async def pokemon(ctx,pokemon):
-  await ctx.respond(f"https://pokemon.com/us/pokedex/{pokemon}")
 
 @client.command(description="Set a slowmode!")
 @commands.has_permissions(manage_channels=True)
