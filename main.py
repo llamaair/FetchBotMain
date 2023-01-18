@@ -69,7 +69,7 @@ async def weather(ctx, *, city: str):
   complete_url = base_url + "appid=" + api_key + "&q=" + city_name
   response = requests.get(complete_url)
   x = response.json()
-  channel = ctx.message.channel
+  channel = ctx.channel
   if x["cod"] != "404":
     async with channel.typing():
       y = x["main"]
