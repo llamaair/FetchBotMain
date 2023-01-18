@@ -64,6 +64,7 @@ api_key = "c08a058955da2e4ba9286a2117aa8897"
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
 @client.command(description="Get the weather of a city")
+@check(check_if_user_has_premium)
 async def weather(ctx, *, city: str):
   city_name = city
   complete_url = base_url + "appid=" + api_key + "&q=" + city_name
