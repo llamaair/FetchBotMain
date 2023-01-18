@@ -87,9 +87,9 @@ async def weather(ctx, *, city: str):
       embed.add_field(name="Atmospheric Pressure(hPa)", value=f"**{current_pressure}hPa**", inline=False)
       embed.set_thumbnail(url="https://i.ibb.co/CMrsxdX/weather.png")
       embed.set_footer(text=f"Requested by {ctx.author.name}")
-      await channel.send(embed=embed)
+      await ctx.respond(embed=embed)
   else:
-    await channel.send("City not found.")
+    await ctx.respond("City not found.")
 
 
 
