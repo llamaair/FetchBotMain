@@ -42,8 +42,7 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
             automodguild = json.load(f)
         if message.guild.id in automodguild:
             if  message.author.bot:
-                return 
-            
+                return
             if 'nigga' in message.content.lower():
                 await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
@@ -62,12 +61,12 @@ class automod(commands.Cog): # create a class for our cog that inherits from com
             if 'fucker' in message.content.lower():
                 await message.delete()
                 await message.channel.send(f"{message.author.mention} watch your mouth :eyes:")
-            if len(message.raw_mentions) > 5:
+            if len(message.raw_mentions) > 4:
                 await message.delete()
                 await message.channel.send(f"{message.author.mention} Please do not mass mention people :skull:")
-            if len(message.raw_mentions) > 7:
+            if len(message.raw_mentions) > 6:
                 await message.author.timeout_for(timedelta(minutes=15))
-            if len(message.raw_mentions) > 14:
+            if len(message.raw_mentions) > 12:
                 await message.author.send(f"You have been banned from {message.guild} for mass mentioning people by FetchBot Automod")
                 await message.author.ban(reason = "Mass mentioning")
             bucket = self.anti_spam.get_bucket(message)
