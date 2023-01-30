@@ -492,8 +492,10 @@ async def uptime(ctx):
 
 
 @client.command(description="Add FetchBot Premium to a member")
-@commands.is_owner()
 async def addpremium(ctx, user : discord.Member):
+
+  if ctx.author.id not in (1069582672986390579, 1069581476443738233): # your desired IDs here
+    return await ctx.respond("You do not have the required permissions to do this!")
   with open("premium_users.json") as f:
     premium_users_list = json.load(f)
 
